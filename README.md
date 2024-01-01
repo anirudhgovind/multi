@@ -1,0 +1,21 @@
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+# multi
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+multi provides utility functions that make basic steps — cleaning street
+networks, creating spatial units, etc. — in urban morphometric analyses
+easier.
+
+## Installation
+
+You can install the development version of multi from
+[GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("anirudhgovind/multi")
+```
