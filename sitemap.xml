@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://anirudhgovind.github.io/multi/404.html</loc>
+  </url>
+  <url>
+    <loc>https://anirudhgovind.github.io/multi/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>https://anirudhgovind.github.io/multi/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>https://anirudhgovind.github.io/multi/authors.html</loc>
+  </url>
+  <url>
+    <loc>https://anirudhgovind.github.io/multi/index.html</loc>
+  </url>
+  <url>
+    <loc>https://anirudhgovind.github.io/multi/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://anirudhgovind.github.io/multi/reference/st_create_streetblocks.html</loc>
+  </url>
+  <url>
+    <loc>https://anirudhgovind.github.io/multi/reference/st_extract_connected.html</loc>
+  </url>
+  <url>
+    <loc>https://anirudhgovind.github.io/multi/reference/st_extract_disconnected.html</loc>
+  </url>
+  <url>
+    <loc>https://anirudhgovind.github.io/multi/reference/st_extract_intersections.html</loc>
+  </url>
+  <url>
+    <loc>https://anirudhgovind.github.io/multi/reference/st_merge_spatial_units.html</loc>
+  </url>
+</urlset>
