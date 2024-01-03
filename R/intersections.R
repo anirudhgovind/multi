@@ -7,8 +7,8 @@
 #'
 #' @examples
 #' intersections <- st_extract_intersections(bangalore_highways)
-#' plot(bangalore_highways)
-#' plot(intersections, add = TRUE)
+#' plot(bangalore_highways, col = "black")
+#' plot(intersections, col = "red", add = TRUE)
 st_extract_intersections <- function(x) {
   # Check x is of type sf and convert to linestrings using an internal function
 

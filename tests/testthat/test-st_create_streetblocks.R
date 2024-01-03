@@ -21,3 +21,10 @@ test_that("st_create_streetblocks() fails on non-polygon objects passed to bound
                                       boundary = bangalore_highways,
                                       merge_threshold = 100))
 })
+
+test_that("st_create_streetblocks() fails on objects with lengths > 1 passed to boundary", {
+  expect_error(st_create_streetblocks(x = bangalore_boundary,
+                                      boundary = rbind(bangalore_boundary,
+                                                       bangalore_boundary),
+                                      merge_threshold = 100))
+})

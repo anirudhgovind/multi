@@ -21,7 +21,7 @@ st_create_streetblocks <- function(x,
                                boundary,
                                merge_threshold = 4050,
                                verbose = T) {
-  # Check x is of type sf
+  # Check data types.
 
   if (!inherits(x, "sf")) {
     stop("Street networks must be in `sf` format.")
@@ -32,7 +32,7 @@ st_create_streetblocks <- function(x,
     stop("Boundary must be in `sf` format.")
   }
 
-  # Check geometry types
+  # Check geometry types.
 
   if (all(sf::st_is(x,
                     "LINESTRING") != TRUE)) {
@@ -44,7 +44,13 @@ st_create_streetblocks <- function(x,
     stop("boundary must contain `POLYGON` geometries.")
   }
 
-  # Select just the geometry column
+  # Check boundary contains only one object
+
+  if (nrow(boundary) > 1) {
+    stop("Please provide a single boundary object.")
+  }
+
+  # Select just the geometry column.
 
   x_geometry <- sf::st_as_sf(sf::st_geometry(x))
 
@@ -96,10 +102,13 @@ st_create_streetblocks <- function(x,
 
   if (!is.null(merge_threshold)) {
 
-    st_merge_spatial_units(x = z_sf,
-                           merge_threshold = merge_threshold,
-                           verbose = verbose)
+    st_merge_spatialunits(x = z_sf,
+                          merge_threshold = merge_threshold,
+                          verbose = verbose)
   }
+
+  z_sf <- sf::st_intersection(z_sf,
+                              boundary)
 
   return(z_sf)
 }

@@ -1,14 +1,14 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# multi
+# multi: Morphometric UtiLiTIes
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-multi provides utility functions that make basic steps — cleaning street
-networks, creating spatial units, etc. — in urban morphometric analyses
-easier.
+multi (Morphometric UtiLiTIes) provides utility functions that make
+basic steps — cleaning street networks, creating spatial units, etc. —
+in urban morphometric analyses easier.
 
 ## Installation
 

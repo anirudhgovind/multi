@@ -1,4 +1,19 @@
 url: https://anirudhgovind.github.io/multi/
 template:
   bootstrap: 5
+reference:
+
+- subtitle: Extraction
+  contents:
+  - st_extract_connected
+  - st_extract_disconnected
+  - st_extract_intersections
+
+- subtitle: Spatial Units
+  contents:
+  - st_create_streetblocks
+  - st_create_tessellations
+
+- subtitle: Miscellaneous
+  contents: st_merge_spatial_units
 

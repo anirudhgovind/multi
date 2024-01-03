@@ -13,12 +13,12 @@ knitr::opts_chunk$set(
 )
 ```
 
-# multi
+# multi: Morphometric UtiLiTIes
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-multi provides utility functions that make basic steps &mdash; cleaning street networks, creating spatial units, etc. &mdash; in urban morphometric analyses easier.
+multi (Morphometric UtiLiTIes) provides utility functions that make basic steps &mdash; cleaning street networks, creating spatial units, etc. &mdash; in urban morphometric analyses easier.
 
 ## Installation
 

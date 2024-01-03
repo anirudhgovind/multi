@@ -1,10 +1,11 @@
-#' Title
+#' Iteratively merge spatial units to ensure all of them meet a minimum area threshold.
 #'
 #' @param x an `sf` object with `POLYGON` geometries representing the
 #' spatial units to be merged.
-#' @param merge_threshold numeric; value represents the smallest acceptable
-#' size for a spatial unit. Contiguous units will be iteratively merged until
-#' this value is reached. To skip this process, set `merge_threshold = NULL`.
+#' @param merge_threshold numeric; value in square meters represents the
+#' smallest acceptable area for a spatial unit. Contiguous units will be
+#' iteratively merged until this value is reached. To skip this process,
+#' set `merge_threshold = NULL`.
 #' @param verbose logical; if `FALSE` no status messages will be output.
 #'
 #' @return An `sf` object with `POLYGON` geometries representing street block
@@ -12,7 +13,7 @@
 #' @export
 #'
 #' @examples
-st_merge_spatial_units <- function(x,
+st_merge_spatialunits <- function(x,
                                    merge_threshold,
                                    verbose = T) {
 
