@@ -14,8 +14,11 @@
 #'
 #' @examples
 st_merge_spatialunits <- function(x,
-                                   merge_threshold,
-                                   verbose = T) {
+                                  merge_threshold,
+                                  verbose = T) {
+  # Turn off s2 geometry
+
+  sf::sf_use_s2(FALSE)
 
   # Check x is of type sf
 
@@ -39,7 +42,6 @@ st_merge_spatialunits <- function(x,
   # Check name of geometry column
 
   if (!"geometry" %in% colnames(x)) {
-
     sf::st_geometry(x) <- "geometry"
     x <- sf::st_as_sf(x)
     warning("The `sf` geometry column was renamed before merging.")
@@ -56,20 +58,21 @@ st_merge_spatialunits <- function(x,
       # First check to see if unit i is valid and if it has an area less than the merge threshold
 
       if (is.na(x$areas[i])) {
-        x <- x[-i, ]
+        x <- x[-i,]
       }
 
       else if (x$areas[i] < merge_threshold) {
         # Find neighbours
 
-        neighbours <- sfdep::st_contiguity(x,
-                                           queen = F)
+        suppressWarnings(suppressMessages(neighbours <-
+                                            sfdep::st_contiguity(x,
+                                                                 queen = F)))
 
         x$neighbours <- neighbours
 
         # Extract the ref_unit
 
-        ref_unit <- x[i,]
+        ref_unit <- x[i, ]
 
         # Extract the neighbours
 
@@ -77,7 +80,7 @@ st_merge_spatialunits <- function(x,
 
         # Get geometry of the neighbours
 
-        ref_unit_neighbours_geo <- x[ref_unit_neighbours, ]
+        ref_unit_neighbours_geo <- x[ref_unit_neighbours,]
 
         ref_unit_neighbours_geo$neighbours <- NULL
         ref_unit_neighbours_geo$areas <- NULL
@@ -86,26 +89,29 @@ st_merge_spatialunits <- function(x,
 
         # Find the closest polygon
 
-        suppressWarnings(dist <-
-                           euclideanDistance(
-                             sf::st_coordinates(sf::st_centroid(ref_unit)),
-                             sf::st_coordinates(sf::st_centroid(ref_unit_neighbours_geo))
-                           ))
+        suppressWarnings(suppressMessages(
+          dist <-
+            euclideanDistance(
+              sf::st_coordinates(sf::st_centroid(ref_unit)),
+              sf::st_coordinates(sf::st_centroid(ref_unit_neighbours_geo))
+            )
+        ))
 
         closest_unit <-
           as.integer(ref_unit_neighbours_geo$index[which.min(dist)])
 
         # Extract units to merge and retain
 
-        x_retained <- x[-c(i, closest_unit),]
+        x_retained <- x[-c(i, closest_unit), ]
 
         x_retained$neighbours <- NULL
 
         x_retained$areas <- NULL
 
-        x_merged <- x[c(i, closest_unit),]
+        x_merged <- x[c(i, closest_unit), ]
 
-        x_merged <- sf::st_as_sf(sf::st_union(x_merged))
+        suppressWarnings(suppressMessages(x_merged <-
+                                            sf::st_as_sf(sf::st_union(x_merged))))
 
         sf::st_geometry(x_merged) <- "geometry"
 

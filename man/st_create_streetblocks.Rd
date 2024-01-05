@@ -28,6 +28,6 @@ Create street block spatial units.
 }
 \examples{
 street_blocks <- st_create_streetblocks(x = bangalore_highways,
-boundary = bangalore_boundary, merge_threshold = 4050, verbose = FALSE)
+boundary = bangalore_boundary, merge_threshold = 1, verbose = FALSE)
 plot(street_blocks)
 }

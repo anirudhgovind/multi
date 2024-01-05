@@ -15,18 +15,17 @@
 #'
 #' @examples
 #' street_blocks <- st_create_streetblocks(x = bangalore_highways,
-#' boundary = bangalore_boundary, merge_threshold = 4050, verbose = FALSE)
+#' boundary = bangalore_boundary, merge_threshold = 1, verbose = FALSE)
 #' plot(street_blocks)
 st_create_streetblocks <- function(x,
-                               boundary,
-                               merge_threshold = 4050,
-                               verbose = T) {
+                                   boundary,
+                                   merge_threshold = 4050,
+                                   verbose = T) {
   # Check data types.
 
   if (!inherits(x, "sf")) {
     stop("Street networks must be in `sf` format.")
   }
-
 
   if (!inherits(boundary, "sf")) {
     stop("Boundary must be in `sf` format.")
@@ -56,6 +55,13 @@ st_create_streetblocks <- function(x,
 
   boundary_geometry <- sf::st_geometry(boundary)
 
+  # Clip x to the boundary
+
+  suppressWarnings(suppressMessages(
+    x_geometry <- sf::st_intersection(x_geometry,
+                                      boundary_geometry)
+  ))
+
   # Cast polygon to linestrings
 
   boundary_geometry <- sf::st_as_sf(sf::st_cast(boundary_geometry,
@@ -69,7 +75,7 @@ st_create_streetblocks <- function(x,
 
   # Union the geometry
 
-  z_union <- sf::st_union(z)
+  suppressWarnings(suppressMessages(z_union <- sf::st_union(z)))
 
   # Convert lines to polygons
 
@@ -101,14 +107,10 @@ st_create_streetblocks <- function(x,
   }
 
   if (!is.null(merge_threshold)) {
-
-    st_merge_spatialunits(x = z_sf,
-                          merge_threshold = merge_threshold,
-                          verbose = verbose)
+    z_sf <- st_merge_spatialunits(x = z_sf,
+                                  merge_threshold = merge_threshold,
+                                  verbose = verbose)
   }
-
-  z_sf <- sf::st_intersection(z_sf,
-                              boundary)
 
   return(z_sf)
 }
