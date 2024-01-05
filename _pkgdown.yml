@@ -16,3 +16,8 @@ reference:
 - subtitle: Miscellaneous
   contents: st_merge_spatialunits
 
+- subtitle: Datasets
+  contents:
+  - bangalore_boundary
+  - bangalore_buildings
+  - bangalore_highways
