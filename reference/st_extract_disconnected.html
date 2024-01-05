@@ -67,16 +67,17 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">disconnected_streets</span> <span class="op">&lt;-</span> <span class="fu">st_extract_disconnected</span><span class="op">(</span><span class="va">bangalore_highways</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> although coordinates are longitude/latitude, st_intersects assumes that they</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> are planar</span>
 <span class="r-in"><span><span class="va">disconnected_streets</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 3 features and 1 field</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 2 features and 2 fields</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: LINESTRING</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 8636274 ymin: 1455129 xmax: 8636787 ymax: 1455600</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Projected CRS: WGS 84 / Pseudo-Mercator</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        osm_id                       geometry</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11   23081548 LINESTRING (8636274 1455149...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 193 367139321 LINESTRING (8636780 1455600...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 254 995260037 LINESTRING (8636274 1455386...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 77.58552 ymin: 12.96382 xmax: 77.59284 ymax: 12.96821</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geodetic CRS:  WGS 84</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                osm_id highway                       geometry</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 367139321   367139321   steps LINESTRING (77.58552 12.963...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1162816462 1162816462 footway LINESTRING (77.59284 12.968...</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

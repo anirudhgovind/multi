@@ -67,24 +67,26 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">connected_streets</span> <span class="op">&lt;-</span> <span class="fu">st_extract_connected</span><span class="op">(</span><span class="va">bangalore_highways</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> although coordinates are longitude/latitude, st_intersects assumes that they</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> are planar</span>
 <span class="r-in"><span><span class="va">connected_streets</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 255 features and 1 field</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 417 features and 2 fields</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: LINESTRING</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 8636274 ymin: 1455129 xmax: 8637274 ymax: 1456129</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Projected CRS: WGS 84 / Pseudo-Mercator</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 77.5771 ymin: 12.95439 xmax: 77.59503 ymax: 12.97567</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geodetic CRS:  WGS 84</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> First 10 features:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      osm_id                       geometry</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   8687347 LINESTRING (8637260 1455223...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  22893740 LINESTRING (8637007 1456054...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  23076921 LINESTRING (8636610 1455603...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  23076927 LINESTRING (8636984 1456016...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  23076955 LINESTRING (8637108 1456058...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  23081473 LINESTRING (8636605 1455577...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  23081479 LINESTRING (8637002 1455170...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  23081496 LINESTRING (8636419 1455285...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  23081501 LINESTRING (8636307 1455334...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 23081545 LINESTRING (8636274 1455293...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            osm_id     highway                       geometry</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8687347   8687347 residential LINESTRING (77.58983 12.960...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22893740 22893740     primary LINESTRING (77.58761 12.967...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23076921 23076921   secondary LINESTRING (77.58399 12.963...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23076927 23076927     primary LINESTRING (77.58735 12.967...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23076955 23076955    tertiary LINESTRING (77.58846 12.967...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23081473 23081473 residential LINESTRING (77.58395 12.963...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23081479 23081479 residential LINESTRING (77.58751 12.960...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23081496 23081496 residential LINESTRING (77.58227 12.961...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23081501 23081501 residential LINESTRING (77.58127 12.961...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23081545 23081545 residential LINESTRING (77.57966 12.961...</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

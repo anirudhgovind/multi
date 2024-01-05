@@ -16,6 +16,15 @@
     <loc>https://anirudhgovind.github.io/multi/index.html</loc>
   </url>
   <url>
+    <loc>https://anirudhgovind.github.io/multi/reference/bangalore_boundary.html</loc>
+  </url>
+  <url>
+    <loc>https://anirudhgovind.github.io/multi/reference/bangalore_buildings.html</loc>
+  </url>
+  <url>
+    <loc>https://anirudhgovind.github.io/multi/reference/bangalore_highways.html</loc>
+  </url>
+  <url>
     <loc>https://anirudhgovind.github.io/multi/reference/index.html</loc>
   </url>
   <url>
@@ -31,6 +40,6 @@
     <loc>https://anirudhgovind.github.io/multi/reference/st_extract_intersections.html</loc>
   </url>
   <url>
-    <loc>https://anirudhgovind.github.io/multi/reference/st_merge_spatial_units.html</loc>
+    <loc>https://anirudhgovind.github.io/multi/reference/st_merge_spatialunits.html</loc>
   </url>
 </urlset>

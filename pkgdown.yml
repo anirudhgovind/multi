@@ -2,7 +2,7 @@ pandoc: 2.19.2
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles: {}
-last_built: 2024-01-02T21:29Z
+last_built: 2024-01-05T14:58Z
 urls:
   reference: https://anirudhgovind.github.io/multi/reference
   article: https://anirudhgovind.github.io/multi/articles
