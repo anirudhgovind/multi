@@ -14,5 +14,5 @@ reference:
   - st_create_streetblocks
 
 - subtitle: Miscellaneous
-  contents: st_merge_spatial_units
+  contents: st_merge_spatialunits
 
