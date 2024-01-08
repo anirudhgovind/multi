@@ -8,11 +8,15 @@
 #' set `merge_threshold = NULL`.
 #' @param verbose logical; if `FALSE` no status messages will be output.
 #'
-#' @return An `sf` object with `POLYGON` geometries representing street block
+#' @return A `sf` object with `POLYGON` geometries representing street block
 #' spatial units.
 #' @export
 #'
 #' @examples
+#' street_blocks <- st_create_streetblocks(x = bangalore_highways,
+#' boundary = bangalore_boundary, merge_threshold = NULL, verbose = FALSE)
+#' street_blocks_merged <- st_merge_spatialunits(x = street_blocks,
+#' merge_threshold = 4050, verbose = FALSE)
 st_merge_spatialunits <- function(x,
                                   merge_threshold,
                                   verbose = T) {

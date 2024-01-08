@@ -3,7 +3,7 @@
 \docType{data}
 \name{bangalore_boundary}
 \alias{bangalore_boundary}
-\title{Bangalore Morphology Data}
+\title{Bangalore Boundary}
 \format{
 \verb{sf POLYGON} geometries that define the extents of
 the study area.
@@ -12,8 +12,11 @@ the study area.
 bangalore_boundary
 }
 \description{
-These data sets contain example morphometric data for Bangalore and were
-obtained from OpenStreetMap using the \code{osmdata} package.
-Bangalore Boundary
+This is one of three datasets with example morpometric data obtained from
+OpenStreetMap using the \code{osmdata} package.
+Data (c) OpenStreetMap contributors, ODbL 1.0.
+https://www.openstreetmap.org/copyright
+This dataset contains geometry that defines the extents of the study area
+in Bangalore.
 }
 \keyword{datasets}

@@ -14,7 +14,9 @@ reference:
   - st_create_streetblocks
 
 - subtitle: Miscellaneous
-  contents: st_merge_spatialunits
+  contents:
+  - st_merge_spatialunits
+  - st_survey_spatialunits
 
 - subtitle: Datasets
   contents:

@@ -12,6 +12,11 @@ area.
 bangalore_buildings
 }
 \description{
-Bangalore Buildings
+This is one of three datasets with example morpometric data obtained from
+OpenStreetMap using the \code{osmdata} package.
+Data (c) OpenStreetMap contributors, ODbL 1.0.
+https://www.openstreetmap.org/copyright
+This dataset contains geometry that defines the buildings in the study area
+in Bangalore.
 }
 \keyword{datasets}

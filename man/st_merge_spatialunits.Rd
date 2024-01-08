@@ -18,9 +18,15 @@ set \code{merge_threshold = NULL}.}
 \item{verbose}{logical; if \code{FALSE} no status messages will be output.}
 }
 \value{
-An \code{sf} object with \code{POLYGON} geometries representing street block
+A \code{sf} object with \code{POLYGON} geometries representing street block
 spatial units.
 }
 \description{
 Iteratively merge spatial units to ensure all of them meet a minimum area threshold.
+}
+\examples{
+street_blocks <- st_create_streetblocks(x = bangalore_highways,
+boundary = bangalore_boundary, merge_threshold = NULL, verbose = FALSE)
+street_blocks_merged <- st_merge_spatialunits(x = street_blocks,
+merge_threshold = 4050, verbose = FALSE)
 }
