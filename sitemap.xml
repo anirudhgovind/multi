@@ -16,6 +16,9 @@
     <loc>https://anirudhgovind.github.io/multi/index.html</loc>
   </url>
   <url>
+    <loc>https://anirudhgovind.github.io/multi/reference/add_unique_id.html</loc>
+  </url>
+  <url>
     <loc>https://anirudhgovind.github.io/multi/reference/bangalore_boundary.html</loc>
   </url>
   <url>
@@ -29,6 +32,9 @@
   </url>
   <url>
     <loc>https://anirudhgovind.github.io/multi/reference/st_create_streetblocks.html</loc>
+  </url>
+  <url>
+    <loc>https://anirudhgovind.github.io/multi/reference/st_explode.html</loc>
   </url>
   <url>
     <loc>https://anirudhgovind.github.io/multi/reference/st_extract_connected.html</loc>
