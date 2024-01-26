@@ -15,8 +15,10 @@ reference:
 
 - subtitle: Miscellaneous
   contents:
+  - st_explode
   - st_merge_spatialunits
   - st_survey_spatialunits
+  - add_unique_id
 
 - subtitle: Datasets
   contents:

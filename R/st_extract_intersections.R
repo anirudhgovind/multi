@@ -10,30 +10,18 @@
 #' plot(bangalore_highways, col = "black")
 #' plot(intersections, col = "red", add = TRUE)
 st_extract_intersections <- function(x) {
-  # Check x is of type sf and convert to linestrings using an internal function
 
-  x_lines <- process_linestrings(x)
+  # Explode lines. Data format checks are taken care of in the st_explode function.
 
-  # Extract points from the linestring geometry
+  x_expl_lines <- st_explode(x)
 
-  x_points <-
-    sf::st_collection_extract(sf::st_intersection(x_lines),
-                              "POINT")
-
-  # Split the linestrings using the points
-
-  x_split <- lwgeom::st_split(x_lines,
-                              x_points)
-
-  # Extract start and enpoints of all the split linestrings
+  # Exract start and end points
 
   x_split_end <-
-    sf::st_as_sf(lwgeom::st_endpoint(sf::st_collection_extract(x_split,
-                                                               "LINESTRING")))
+    sf::st_as_sf(lwgeom::st_endpoint(x_expl_lines))
 
   x_split_start <-
-    sf::st_as_sf(lwgeom::st_startpoint(sf::st_collection_extract(x_split,
-                                                                 "LINESTRING")))
+    sf::st_as_sf(lwgeom::st_startpoint(x_expl_lines))
 
   # Bind the start and endpoints into one object
 
@@ -42,10 +30,12 @@ st_extract_intersections <- function(x) {
 
   # Intersect the split object with itself
 
-  x_split_intersects <-
-    sf::st_intersects(x_split,
-                      x_split,
-                      remove_self = T)
+  suppressWarnings(suppressMessages(
+    x_split_intersects <-
+      sf::st_intersects(x_split,
+                        x_split,
+                        remove_self = T)
+  ))
 
   # Filter the split intersections to keep only instances with at least two unique intersections
 
@@ -55,6 +45,10 @@ st_extract_intersections <- function(x) {
   # Keep only distinct points
 
   intersections <- dplyr::distinct(x_split_intersections)
+
+  # Rename geometry column
+
+  sf::st_geometry(intersections) <- "geometry"
 
   return(intersections)
 

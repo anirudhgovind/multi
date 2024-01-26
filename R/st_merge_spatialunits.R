@@ -17,6 +17,7 @@
 #' boundary = bangalore_boundary, merge_threshold = NULL, verbose = FALSE)
 #' street_blocks_merged <- st_merge_spatialunits(x = street_blocks,
 #' merge_threshold = 4050, verbose = FALSE)
+#' plot(street_blocks_merged)
 st_merge_spatialunits <- function(x,
                                   merge_threshold,
                                   verbose = T) {
@@ -24,18 +25,9 @@ st_merge_spatialunits <- function(x,
 
   sf::sf_use_s2(FALSE)
 
-  # Check x is of type sf
+  # Check polygons
 
-  if (!inherits(x, "sf")) {
-    stop("Street networks must be in `sf` format.")
-  }
-
-  # Check geometry types
-
-  if (all(sf::st_is(x,
-                    "POLYGON") != TRUE)) {
-    stop("x must contain `POLYGON` geometries.")
-  }
+  x <- process_polygons(x)
 
   # Check merge_threshold is numeric
 

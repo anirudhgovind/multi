@@ -16,7 +16,8 @@ Imports:
     dplyr (>= 1.0.9),
     lwgeom (>= 0.2.8),
     sf (>= 1.0.8),
-    sfdep
+    sfdep,
+    stats
 Depends: 
     R (>= 2.10)
 LazyData: true

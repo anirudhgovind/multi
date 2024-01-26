@@ -2,7 +2,7 @@
 % Please edit documentation in R/st_survey_spatialunits.R
 \name{st_survey_spatialunits}
 \alias{st_survey_spatialunits}
-\title{Survey a set of spatial units to get summary statistics}
+\title{Survey a set of spatial units to get summary statistics.}
 \usage{
 st_survey_spatialunits(x, trim = NULL)
 }
@@ -18,10 +18,11 @@ A \code{data.frame} object with numeric values of min, max, mean, and
 median.
 }
 \description{
-Survey a set of spatial units to get summary statistics
+Survey a set of spatial units to get summary statistics.
 }
 \examples{
 street_blocks <- st_create_streetblocks(x = bangalore_highways,
 boundary = bangalore_boundary, merge_threshold = NULL, verbose = FALSE)
 survey_report <- st_survey_spatialunits(x = street_blocks)
+survey_report
 }

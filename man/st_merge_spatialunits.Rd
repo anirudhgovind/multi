@@ -29,4 +29,5 @@ street_blocks <- st_create_streetblocks(x = bangalore_highways,
 boundary = bangalore_boundary, merge_threshold = NULL, verbose = FALSE)
 street_blocks_merged <- st_merge_spatialunits(x = street_blocks,
 merge_threshold = 4050, verbose = FALSE)
+plot(street_blocks_merged)
 }

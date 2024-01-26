@@ -1,4 +1,4 @@
-#' Survey a set of spatial units to get summary statistics
+#' Survey a set of spatial units to get summary statistics.
 #'
 #' @param x an `sf` object with `POLYGON` geometries representing the
 #' spatial units to be surveyed.
@@ -13,9 +13,9 @@
 #' street_blocks <- st_create_streetblocks(x = bangalore_highways,
 #' boundary = bangalore_boundary, merge_threshold = NULL, verbose = FALSE)
 #' survey_report <- st_survey_spatialunits(x = street_blocks)
+#' survey_report
 st_survey_spatialunits <- function(x,
                                    trim = NULL) {
-
   # Check x is of type sf
 
   if (!inherits(x, "sf")) {
@@ -42,11 +42,14 @@ st_survey_spatialunits <- function(x,
 
   # Survey Result
 
-  output <- data.frame(
-    description = c("min",
-                    "max",
-                    "mean",
-                    "median"),
+  output <- data.frame(category = c("Area",
+                                    "Area",
+                                    "Area",
+                                    "Area"),
+    description = c("Min",
+                    "Max",
+                    "Mean",
+                    "Median"),
     value = c(x_min,
               x_max,
               x_mean,
@@ -61,13 +64,16 @@ st_survey_spatialunits <- function(x,
       x_trim <- mean(x$areas,
                      trim = trim)
 
-      suffix <- data.frame(description = c("trimmed_mean"),
+      suffix <- data.frame(category = c("Area"),
+                           description = c(paste0("Trimmed Mean (",
+                                                  trim,
+                                                  ")")),
                            value = c(x_trim))
 
       output <- rbind(output,
                       suffix)
     }
   }
-
-  return(output)
+  print(output,
+        right = FALSE)
 }

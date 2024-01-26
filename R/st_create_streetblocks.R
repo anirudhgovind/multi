@@ -21,27 +21,11 @@ st_create_streetblocks <- function(x,
                                    boundary,
                                    merge_threshold = 4050,
                                    verbose = T) {
-  # Check data types.
+  # Check linestrings and polygons
 
-  if (!inherits(x, "sf")) {
-    stop("Street networks must be in `sf` format.")
-  }
+  x <- process_linestrings(x)
 
-  if (!inherits(boundary, "sf")) {
-    stop("Boundary must be in `sf` format.")
-  }
-
-  # Check geometry types.
-
-  if (all(sf::st_is(x,
-                    "LINESTRING") != TRUE)) {
-    stop("x must contain `LINESTRING` geometries.")
-  }
-
-  if (all(sf::st_is(boundary,
-                    "POLYGON") != TRUE)) {
-    stop("boundary must contain `POLYGON` geometries.")
-  }
+  boundary <- process_polygons(boundary)
 
   # Check boundary contains only one object
 
