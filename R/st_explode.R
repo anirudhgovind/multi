@@ -1,4 +1,4 @@
-#' Explode geometry in order to manipulate constituent elements.
+#' Explode geometry to manipulate constituent elements.
 #'
 #' @param x an `sf` object with `LINESTRING` geometries.
 #'
@@ -10,6 +10,10 @@
 #' exploded_geom <- st_explode(bangalore_highways)
 #' exploded_geom
 st_explode <- function(x) {
+
+  # Housekeeping: Bind values to col names used further on.
+
+  id <- x1 <- y1 <- NULL
 
   # Check types and convert to linestrings.
 
@@ -47,7 +51,7 @@ st_explode <- function(x) {
 
   # Drop missing values
 
-  x_coords <- na.omit(x_coords)
+  x_coords <- stats::na.omit(x_coords)
 
   # Create linestrings
 

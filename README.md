@@ -6,6 +6,9 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
+> **Warning** This package is under active development. The API may
+> change.
+
 multi (Morphometric UtiLiTIes) provides utility functions that make
 basic steps — cleaning street networks, creating spatial units, etc. —
 in urban morphometric analyses easier.

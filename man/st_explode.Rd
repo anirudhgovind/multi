@@ -2,7 +2,7 @@
 % Please edit documentation in R/st_explode.R
 \name{st_explode}
 \alias{st_explode}
-\title{Explode geometry in order to manipulate constituent elements.}
+\title{Explode geometry to manipulate constituent elements.}
 \usage{
 st_explode(x)
 }
@@ -14,7 +14,7 @@ An \code{sf} object with \code{LINESTRING} geometries with each line segment in
 a separate row.
 }
 \description{
-Explode geometry in order to manipulate constituent elements.
+Explode geometry to manipulate constituent elements.
 }
 \examples{
 exploded_geom <- st_explode(bangalore_highways)

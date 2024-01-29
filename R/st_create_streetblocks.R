@@ -27,12 +27,6 @@ st_create_streetblocks <- function(x,
 
   boundary <- process_polygons(boundary)
 
-  # Check boundary contains only one object
-
-  if (nrow(boundary) > 1) {
-    stop("Please provide a single boundary object.")
-  }
-
   # Select just the geometry column.
 
   x_geometry <- sf::st_as_sf(sf::st_geometry(x))

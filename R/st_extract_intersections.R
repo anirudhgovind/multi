@@ -1,15 +1,23 @@
 #' Extract street intersections.
 #'
 #' @param x an `sf` object with `LINESTRING` geometries representing street networks.
+#' @param threshold integer; the minimum number of intersecting roads needed to
+#' count as an intersection. Default = 2.
 #'
 #' @return An `sf` object with `POINT` geometries representing street intersections.
 #' @export
 #'
 #' @examples
 #' intersections <- st_extract_intersections(bangalore_highways)
-#' plot(bangalore_highways, col = "black")
-#' plot(intersections, col = "red", add = TRUE)
-st_extract_intersections <- function(x) {
+#' plot(intersections)
+st_extract_intersections <- function(x,
+                                     threshold = 2) {
+
+  # Check threshold is an integer.
+
+  if (as.integer(threshold) != threshold) {
+    stop("threshold must be an integer value.")
+  }
 
   # Explode lines. Data format checks are taken care of in the st_explode function.
 
@@ -40,7 +48,7 @@ st_extract_intersections <- function(x) {
   # Filter the split intersections to keep only instances with at least two unique intersections
 
   x_split_intersections <-
-    x_split[lengths(x_split_intersects) > 1, ]
+    x_split[lengths(x_split_intersects) >= threshold, ]
 
   # Keep only distinct points
 

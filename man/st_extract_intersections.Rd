@@ -4,10 +4,13 @@
 \alias{st_extract_intersections}
 \title{Extract street intersections.}
 \usage{
-st_extract_intersections(x)
+st_extract_intersections(x, threshold = 2)
 }
 \arguments{
 \item{x}{an \code{sf} object with \code{LINESTRING} geometries representing street networks.}
+
+\item{threshold}{integer; the minimum number of intersecting roads needed to
+count as an intersection. Default = 2.}
 }
 \value{
 An \code{sf} object with \code{POINT} geometries representing street intersections.
@@ -17,6 +20,5 @@ Extract street intersections.
 }
 \examples{
 intersections <- st_extract_intersections(bangalore_highways)
-plot(bangalore_highways, col = "black")
-plot(intersections, col = "red", add = TRUE)
+plot(intersections)
 }
