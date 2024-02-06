@@ -4,7 +4,13 @@
 \alias{st_create_streetblocks}
 \title{Create street block spatial units.}
 \usage{
-st_create_streetblocks(x, boundary, merge_threshold = 4050, verbose = T)
+st_create_streetblocks(
+  x,
+  boundary,
+  merge_threshold = 4050,
+  merge_type = "min_centroid_distance",
+  verbose = T
+)
 }
 \arguments{
 \item{x}{an \code{sf} object with \code{LINESTRING} geometries representing a street
@@ -16,6 +22,11 @@ extents of the study area.}
 \item{merge_threshold}{numeric; value represents the smallest acceptable
 size for a spatial unit. Contiguous units will be iteratively merged until
 this value is reached. To skip this process, set \code{merge_threshold = NULL}.}
+
+\item{merge_type}{string; Passed on to st_merge_spatialunits.
+Criteria with which polygons are merged. Must be one of
+"min_centroid_distance", "min_shared_boundary", or "max_shared_boundary".
+Default = "min_centroid_distance".}
 
 \item{verbose}{logical; if \code{FALSE} no status messages will be output.}
 }

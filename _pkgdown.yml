@@ -12,6 +12,7 @@ reference:
 - subtitle: Spatial Units
   contents:
   - st_create_streetblocks
+  - st_create_tessellations
 
 - subtitle: Miscellaneous
   contents:

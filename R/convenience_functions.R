@@ -99,7 +99,7 @@ add_unique_id <- function(x) {
     stop("Input data must be in `sf` format.")
   }
 
-  x$id <- seq(1:nrow(x))
+  x$temp_id <- seq(1:nrow(x))
 
   return(x)
 }

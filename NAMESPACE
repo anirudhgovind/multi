@@ -2,6 +2,7 @@
 
 export(add_unique_id)
 export(st_create_streetblocks)
+export(st_create_tessellations)
 export(st_explode)
 export(st_extract_connected)
 export(st_extract_disconnected)

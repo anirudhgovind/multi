@@ -7,6 +7,10 @@
 #' @param merge_threshold numeric; value represents the smallest acceptable
 #' size for a spatial unit. Contiguous units will be iteratively merged until
 #' this value is reached. To skip this process, set `merge_threshold = NULL`.
+#' @param merge_type string; Passed on to st_merge_spatialunits.
+#' Criteria with which polygons are merged. Must be one of
+#' "min_centroid_distance", "min_shared_boundary", or "max_shared_boundary".
+#' Default = "min_centroid_distance".
 #' @param verbose logical; if `FALSE` no status messages will be output.
 #'
 #' @return An `sf` object with `POLYGON` geometries representing street block
@@ -20,6 +24,7 @@
 st_create_streetblocks <- function(x,
                                    boundary,
                                    merge_threshold = 4050,
+                                   merge_type = "min_centroid_distance",
                                    verbose = T) {
   # Check linestrings and polygons
 
@@ -81,12 +86,13 @@ st_create_streetblocks <- function(x,
   }
 
   if (is.null(merge_threshold)) {
-    warning("Small geometries (< 1 m^2) may be present.")
+    warning("Small geometries (< 1 m^2) may be present. Use st_merge_spatialunits() to aggregate them.")
   }
 
   if (!is.null(merge_threshold)) {
     z_sf <- st_merge_spatialunits(x = z_sf,
                                   merge_threshold = merge_threshold,
+                                  merge_type = merge_type,
                                   verbose = verbose)
   }
 

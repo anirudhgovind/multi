@@ -2,7 +2,7 @@
 % Please edit documentation in R/st_extract_connected.R
 \name{st_extract_disconnected}
 \alias{st_extract_disconnected}
-\title{Extract connected streets from a data frame containing linestrings representing street networks.}
+\title{Extract disconnected streets from a data frame containing linestrings representing street networks.}
 \usage{
 st_extract_disconnected(x)
 }
@@ -13,7 +13,7 @@ st_extract_disconnected(x)
 An \code{sf} object containing a subset of \code{x}.
 }
 \description{
-Extract connected streets from a data frame containing linestrings representing street networks.
+Extract disconnected streets from a data frame containing linestrings representing street networks.
 }
 \examples{
 disconnected_streets <- st_extract_disconnected(bangalore_highways)
