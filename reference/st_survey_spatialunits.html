@@ -75,7 +75,7 @@ median.</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">street_blocks</span> <span class="op">&lt;-</span> <span class="fu"><a href="st_create_streetblocks.html">st_create_streetblocks</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">bangalore_highways</span>,</span></span>
 <span class="r-in"><span>boundary <span class="op">=</span> <span class="va">bangalore_boundary</span>, merge_threshold <span class="op">=</span> <span class="cn">NULL</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Small geometries (&lt; 1 m^2) may be present.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Small geometries (&lt; 1 m^2) may be present. Use st_merge_spatialunits() to aggregate them.</span>
 <span class="r-in"><span><span class="va">survey_report</span> <span class="op">&lt;-</span> <span class="fu">st_survey_spatialunits</span><span class="op">(</span>x <span class="op">=</span> <span class="va">street_blocks</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   category description value             </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 Area     Min         8.259066e-01 [m^2]</span>
