@@ -7,7 +7,8 @@
 #' @param merge_threshold numeric; value represents the smallest acceptable
 #' size for a spatial unit. Contiguous units will be iteratively merged until
 #' this value is reached. To skip this process, set `merge_threshold = NULL`.
-#' @param merge_type string; Passed on to st_merge_spatialunits. Criteria with which polygons are merged. Must be one of
+#' @param merge_type string; Passed on to st_merge_spatialunits.
+#' Criteria with which polygons are merged. Must be one of
 #' "min_centroid_distance", "min_shared_boundary", or "max_shared_boundary".
 #' Default = "min_centroid_distance".
 #' @param verbose logical; if `FALSE` no status messages will be output.
