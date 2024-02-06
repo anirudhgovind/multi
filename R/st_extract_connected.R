@@ -29,7 +29,7 @@ st_extract_connected <- function(x) {
 
 
 
-#' Extract connected streets from a data frame containing linestrings representing street networks.
+#' Extract disconnected streets from a data frame containing linestrings representing street networks.
 #'
 #' @param x an `sf` object with `LINESTRING` geometries.
 #'
