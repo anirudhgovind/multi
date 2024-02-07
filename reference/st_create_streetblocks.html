@@ -53,6 +53,7 @@
 <span>  <span class="va">boundary</span>,</span>
 <span>  merge_threshold <span class="op">=</span> <span class="fl">4050</span>,</span>
 <span>  merge_type <span class="op">=</span> <span class="st">"min_centroid_distance"</span>,</span>
+<span>  contiguity <span class="op">=</span> <span class="st">"rook"</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="cn">T</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -72,14 +73,20 @@ extents of the study area.</p></dd>
 <dt>merge_threshold</dt>
 <dd><p>numeric; value represents the smallest acceptable
 size for a spatial unit. Contiguous units will be iteratively merged until
-this value is reached. To skip this process, set <code>merge_threshold = NULL</code>.</p></dd>
+this value is reached. To skip this process, set <code>merge_threshold = NULL</code>.
+See st_merge_spatialunits() for more details.</p></dd>
 
 
 <dt>merge_type</dt>
 <dd><p>string; Passed on to st_merge_spatialunits.
 Criteria with which polygons are merged. Must be one of
 "min_centroid_distance", "min_shared_boundary", or "max_shared_boundary".
-Default = "min_centroid_distance".</p></dd>
+Default = "min_centroid_distance".
+See st_merge_spatialunits() for more details.</p></dd>
+
+
+<dt>contiguity</dt>
+<dd><p>string; one of "queen" or "rook". Default = "rook".</p></dd>
 
 
 <dt>verbose</dt>
@@ -92,6 +99,10 @@ Default = "min_centroid_distance".</p></dd>
 
 <p>An <code>sf</code> object with <code>POLYGON</code> geometries representing street block
 spatial units.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p>st_merge_spatialunits()</p></div>
     </div>
 
     <div class="section level2">

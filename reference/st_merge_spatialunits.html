@@ -52,6 +52,7 @@
 <span>  <span class="va">x</span>,</span>
 <span>  <span class="va">merge_threshold</span>,</span>
 <span>  merge_type <span class="op">=</span> <span class="st">"min_centroid_distance"</span>,</span>
+<span>  contiguity <span class="op">=</span> <span class="st">"rook"</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="cn">T</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -74,6 +75,10 @@ set <code>merge_threshold = NULL</code>.</p></dd>
 <dd><p>string; criteria with which polygons are merged. Must be one of
 "min_centroid_distance", "min_shared_boundary", or "max_shared_boundary".
 Default = "min_centroid_distance".</p></dd>
+
+
+<dt>contiguity</dt>
+<dd><p>string; one of "queen" or "rook". Default = "rook".</p></dd>
 
 
 <dt>verbose</dt>

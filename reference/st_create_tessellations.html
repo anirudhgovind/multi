@@ -51,11 +51,12 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">st_create_tessellations</span><span class="op">(</span></span>
 <span>  <span class="va">x</span>,</span>
 <span>  <span class="va">boundary</span>,</span>
+<span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"morphological"</span><span class="op">)</span>,</span>
 <span>  segment_length <span class="op">=</span> <span class="fl">0.5</span>,</span>
 <span>  shrink_extent <span class="op">=</span> <span class="fl">0.4</span>,</span>
 <span>  merge_threshold <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  merge_type <span class="op">=</span> <span class="st">"min_centroid_distance"</span>,</span>
-<span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"morphological"</span><span class="op">)</span>,</span>
+<span>  contiguity <span class="op">=</span> <span class="st">"rook"</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="cn">T</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -71,6 +72,12 @@
 extents of the study area.</p></dd>
 
 
+<dt>type</dt>
+<dd><p>string; Type of tessellated spatial unit to create.
+Default = "morphological".
+Note: Currently, only "morphological" tessellation is implemented.</p></dd>
+
+
 <dt>segment_length</dt>
 <dd><p>numeric; Length of segments building polygons are
 subdivided into. Default = 0.5. See Fleischmann et al., 2020 for details.</p></dd>
@@ -84,20 +91,20 @@ Default = 0.4. See Fleischmann et al., 2020 for details.</p></dd>
 <dt>merge_threshold</dt>
 <dd><p>numeric; value represents the smallest acceptable
 size for a spatial unit. Contiguous units will be iteratively merged until
-this value is reached. To skip this process, set <code>merge_threshold = NULL</code>.</p></dd>
+this value is reached. To skip this process, set <code>merge_threshold = NULL</code>.
+See st_merge_spatialunits() for more details.</p></dd>
 
 
 <dt>merge_type</dt>
 <dd><p>string; Passed on to st_merge_spatialunits.
 Criteria with which polygons are merged. Must be one of
 "min_centroid_distance", "min_shared_boundary", or "max_shared_boundary".
-Default = "min_centroid_distance".</p></dd>
+Default = "min_centroid_distance".
+See st_merge_spatialunits() for more details.</p></dd>
 
 
-<dt>type</dt>
-<dd><p>string; Type of tessellated spatial unit to create.
-Default = "morphological".
-Note: Currently, only "morphological" tessellation is implemented.</p></dd>
+<dt>contiguity</dt>
+<dd><p>string; one of "queen" or "rook". Default = "rook".</p></dd>
 
 
 <dt>verbose</dt>
@@ -117,6 +124,10 @@ spatial units.</p>
 Morphological tessellation as a way of partitioning space: Improving consistency
 in urban morphology at the plot scale. Computers, Environment and Urban Systems,
 80, 101441.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p>st_merge_spatialunits()</p></div>
     </div>
 
     <div class="section level2">
