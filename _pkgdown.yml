@@ -5,6 +5,7 @@ reference:
 
 - subtitle: Extraction
   contents:
+  - st_explode
   - st_extract_connected
   - st_extract_disconnected
   - st_extract_intersections
@@ -13,12 +14,11 @@ reference:
   contents:
   - st_create_streetblocks
   - st_create_tessellations
+  - st_merge_spatialunits
+  - st_survey_spatialunits
 
 - subtitle: Miscellaneous
   contents:
-  - st_explode
-  - st_merge_spatialunits
-  - st_survey_spatialunits
   - add_unique_id
 
 - subtitle: Datasets

@@ -9,6 +9,7 @@ st_create_streetblocks(
   boundary,
   merge_threshold = 4050,
   merge_type = "min_centroid_distance",
+  contiguity = "rook",
   verbose = T
 )
 }
@@ -21,12 +22,16 @@ extents of the study area.}
 
 \item{merge_threshold}{numeric; value represents the smallest acceptable
 size for a spatial unit. Contiguous units will be iteratively merged until
-this value is reached. To skip this process, set \code{merge_threshold = NULL}.}
+this value is reached. To skip this process, set \code{merge_threshold = NULL}.
+See st_merge_spatialunits() for more details.}
 
 \item{merge_type}{string; Passed on to st_merge_spatialunits.
 Criteria with which polygons are merged. Must be one of
 "min_centroid_distance", "min_shared_boundary", or "max_shared_boundary".
-Default = "min_centroid_distance".}
+Default = "min_centroid_distance".
+See st_merge_spatialunits() for more details.}
+
+\item{contiguity}{string; one of "queen" or "rook". Default = "rook".}
 
 \item{verbose}{logical; if \code{FALSE} no status messages will be output.}
 }
@@ -41,4 +46,7 @@ Create street block spatial units.
 street_blocks <- st_create_streetblocks(x = bangalore_highways,
 boundary = bangalore_boundary, merge_threshold = 1, verbose = FALSE)
 plot(street_blocks)
+}
+\seealso{
+st_merge_spatialunits()
 }

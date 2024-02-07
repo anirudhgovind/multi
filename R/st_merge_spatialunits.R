@@ -9,6 +9,7 @@
 #' @param merge_type string; criteria with which polygons are merged. Must be one of
 #' "min_centroid_distance", "min_shared_boundary", or "max_shared_boundary".
 #' Default = "min_centroid_distance".
+#' @param contiguity string; one of "queen" or "rook". Default = "rook".
 #' @param verbose logical; if `FALSE` no status messages will be output.
 #'
 #' @return A `sf` object with `POLYGON` geometries representing street block
@@ -24,6 +25,7 @@
 st_merge_spatialunits <- function(x,
                                   merge_threshold,
                                   merge_type = "min_centroid_distance",
+                                  contiguity = "rook",
                                   verbose = T) {
   # Turn off s2 geometry
 
@@ -42,8 +44,8 @@ st_merge_spatialunits <- function(x,
   # Check type is one of defined defaults
 
   if (!merge_type %in% c("min_centroid_distance",
-                   "min_shared_boundary",
-                   "max_shared_boundary")) {
+                         "min_shared_boundary",
+                         "max_shared_boundary")) {
     stop(
       "merge_type must be one of 'min_centroid_distance', 'min_shared_boundary', or 'max_shared_boundary'."
     )
@@ -68,21 +70,29 @@ st_merge_spatialunits <- function(x,
       # First check to see if unit i is valid and if it has an area less than the merge threshold
 
       if (is.na(x$areas[i])) {
-        x <- x[-i,]
+        x <- x[-i, ]
       }
 
       else if (x$areas[i] < merge_threshold) {
         # Find neighbours
 
-        suppressWarnings(suppressMessages(neighbours <-
-                                            sfdep::st_contiguity(x,
-                                                                 queen = F)))
+        if (contiguity == "rook") {
+          suppressWarnings(suppressMessages(neighbours <-
+                                              sfdep::st_contiguity(x,
+                                                                   queen = F)))
+        } else if (contiguity == "queen") {
+          suppressWarnings(suppressMessages(neighbours <-
+                                              sfdep::st_contiguity(x,
+                                                                   queen = T)))
+        } else {
+          stop("contiguity must be one of 'queen' or 'rook'.")
+        }
 
         x$neighbours <- neighbours
 
         # Extract the ref_unit
 
-        ref_unit <- x[i, ]
+        ref_unit <- x[i,]
 
         # Extract the neighbours
 
@@ -90,7 +100,7 @@ st_merge_spatialunits <- function(x,
 
         # Get geometry of the neighbours
 
-        ref_unit_neighbours_geo <- x[ref_unit_neighbours,]
+        ref_unit_neighbours_geo <- x[ref_unit_neighbours, ]
 
         ref_unit_neighbours_geo$neighbours <- NULL
         ref_unit_neighbours_geo$areas <- NULL
@@ -113,13 +123,13 @@ st_merge_spatialunits <- function(x,
 
         # Extract units to merge and retain
 
-        x_retained <- x[-c(i, selected_unit), ]
+        x_retained <- x[-c(i, selected_unit),]
 
         x_retained$neighbours <- NULL
 
         x_retained$areas <- NULL
 
-        x_merged <- x[c(i, selected_unit), ]
+        x_merged <- x[c(i, selected_unit),]
 
         suppressWarnings(suppressMessages(x_merged <-
                                             sf::st_as_sf(sf::st_union(x_merged))))

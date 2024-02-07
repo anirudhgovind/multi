@@ -10,18 +10,22 @@
 #' @param merge_threshold numeric; value represents the smallest acceptable
 #' size for a spatial unit. Contiguous units will be iteratively merged until
 #' this value is reached. To skip this process, set `merge_threshold = NULL`.
+#' See st_merge_spatialunits() for more details.
 #' @param merge_type string; Passed on to st_merge_spatialunits.
 #' Criteria with which polygons are merged. Must be one of
 #' "min_centroid_distance", "min_shared_boundary", or "max_shared_boundary".
 #' Default = "min_centroid_distance".
+#' See st_merge_spatialunits() for more details.
 #' @param type string; Type of tessellated spatial unit to create.
 #' Default = "morphological".
 #' Note: Currently, only "morphological" tessellation is implemented.
+#' @param contiguity string; one of "queen" or "rook". Default = "rook".
 #' @param verbose logical; if `FALSE` no status messages will be output.
 #'
 #' @return An `sf` object with `POLYGON` geometries representing tessellated
 #' spatial units.
 #' @export
+#' @seealso st_merge_spatialunits()
 #' @references Fleischmann, M., Feliciotti, A., Romice, O., & Porta, S. (2020).
 #' Morphological tessellation as a way of partitioning space: Improving consistency
 #' in urban morphology at the plot scale. Computers, Environment and Urban Systems,
@@ -34,11 +38,12 @@
 st_create_tessellations <-
   function(x,
            boundary,
+           type = c("morphological"),
            segment_length = 0.5,
            shrink_extent = 0.4,
            merge_threshold = NULL,
            merge_type = "min_centroid_distance",
-           type = c("morphological"),
+           contiguity = "rook",
            verbose = T) {
 
     if (type == "morphological") {
@@ -150,6 +155,7 @@ st_create_tessellations <-
           x = tessellations,
           merge_threshold = merge_threshold,
           merge_type = merge_type,
+          contiguity = contiguity,
           verbose = verbose
         )
       }
