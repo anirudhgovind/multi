@@ -7,16 +7,19 @@
 #' @param merge_threshold numeric; value represents the smallest acceptable
 #' size for a spatial unit. Contiguous units will be iteratively merged until
 #' this value is reached. To skip this process, set `merge_threshold = NULL`.
+#' See st_merge_spatialunits() for more details.
 #' @param merge_type string; Passed on to st_merge_spatialunits.
 #' Criteria with which polygons are merged. Must be one of
 #' "min_centroid_distance", "min_shared_boundary", or "max_shared_boundary".
 #' Default = "min_centroid_distance".
+#' See st_merge_spatialunits() for more details.
+#' @param contiguity string; one of "queen" or "rook". Default = "rook".
 #' @param verbose logical; if `FALSE` no status messages will be output.
 #'
 #' @return An `sf` object with `POLYGON` geometries representing street block
 #' spatial units.
 #' @export
-#'
+#' @seealso st_merge_spatialunits()
 #' @examples
 #' street_blocks <- st_create_streetblocks(x = bangalore_highways,
 #' boundary = bangalore_boundary, merge_threshold = 1, verbose = FALSE)
@@ -25,6 +28,7 @@ st_create_streetblocks <- function(x,
                                    boundary,
                                    merge_threshold = 4050,
                                    merge_type = "min_centroid_distance",
+                                   contiguity = "rook",
                                    verbose = T) {
   # Check linestrings and polygons
 
@@ -93,6 +97,7 @@ st_create_streetblocks <- function(x,
     z_sf <- st_merge_spatialunits(x = z_sf,
                                   merge_threshold = merge_threshold,
                                   merge_type = merge_type,
+                                  contiguity = contiguity,
                                   verbose = verbose)
   }
 

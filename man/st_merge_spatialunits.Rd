@@ -8,6 +8,7 @@ st_merge_spatialunits(
   x,
   merge_threshold,
   merge_type = "min_centroid_distance",
+  contiguity = "rook",
   verbose = T
 )
 }
@@ -23,6 +24,8 @@ set \code{merge_threshold = NULL}.}
 \item{merge_type}{string; criteria with which polygons are merged. Must be one of
 "min_centroid_distance", "min_shared_boundary", or "max_shared_boundary".
 Default = "min_centroid_distance".}
+
+\item{contiguity}{string; one of "queen" or "rook". Default = "rook".}
 
 \item{verbose}{logical; if \code{FALSE} no status messages will be output.}
 }

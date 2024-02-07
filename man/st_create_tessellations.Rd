@@ -7,11 +7,12 @@
 st_create_tessellations(
   x,
   boundary,
+  type = c("morphological"),
   segment_length = 0.5,
   shrink_extent = 0.4,
   merge_threshold = NULL,
   merge_type = "min_centroid_distance",
-  type = c("morphological"),
+  contiguity = "rook",
   verbose = T
 )
 }
@@ -21,6 +22,10 @@ st_create_tessellations(
 \item{boundary}{an \code{sf} object with \code{POLYGON} geometries representing the
 extents of the study area.}
 
+\item{type}{string; Type of tessellated spatial unit to create.
+Default = "morphological".
+Note: Currently, only "morphological" tessellation is implemented.}
+
 \item{segment_length}{numeric; Length of segments building polygons are
 subdivided into. Default = 0.5. See Fleischmann et al., 2020 for details.}
 
@@ -29,16 +34,16 @@ Default = 0.4. See Fleischmann et al., 2020 for details.}
 
 \item{merge_threshold}{numeric; value represents the smallest acceptable
 size for a spatial unit. Contiguous units will be iteratively merged until
-this value is reached. To skip this process, set \code{merge_threshold = NULL}.}
+this value is reached. To skip this process, set \code{merge_threshold = NULL}.
+See st_merge_spatialunits() for more details.}
 
 \item{merge_type}{string; Passed on to st_merge_spatialunits.
 Criteria with which polygons are merged. Must be one of
 "min_centroid_distance", "min_shared_boundary", or "max_shared_boundary".
-Default = "min_centroid_distance".}
+Default = "min_centroid_distance".
+See st_merge_spatialunits() for more details.}
 
-\item{type}{string; Type of tessellated spatial unit to create.
-Default = "morphological".
-Note: Currently, only "morphological" tessellation is implemented.}
+\item{contiguity}{string; one of "queen" or "rook". Default = "rook".}
 
 \item{verbose}{logical; if \code{FALSE} no status messages will be output.}
 }
@@ -60,4 +65,7 @@ Fleischmann, M., Feliciotti, A., Romice, O., & Porta, S. (2020).
 Morphological tessellation as a way of partitioning space: Improving consistency
 in urban morphology at the plot scale. Computers, Environment and Urban Systems,
 80, 101441.
+}
+\seealso{
+st_merge_spatialunits()
 }
