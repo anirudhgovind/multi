@@ -25,7 +25,7 @@
 #' @return An `sf` object with `POLYGON` geometries representing tessellated
 #' spatial units.
 #' @export
-#' @seealso st_merge_spatialunits()
+#' @seealso st_merge_spatialunits, [moter::motess()]
 #' @references Fleischmann, M., Feliciotti, A., Romice, O., & Porta, S. (2020).
 #' Morphological tessellation as a way of partitioning space: Improving consistency
 #' in urban morphology at the plot scale. Computers, Environment and Urban Systems,
@@ -126,10 +126,10 @@ st_create_tessellations <-
 
       # Merge polygons
 
-      voronoi_polygons <- voronoi_polygons |>
+      suppressMessages(suppressWarnings(voronoi_polygons <- voronoi_polygons |>
         dplyr::group_by(temp_id) |>
         dplyr::summarise(geometry = sf::st_union(geometry)) |>
-        dplyr::ungroup()
+        dplyr::ungroup()))
 
       # Clip to boundary
 

@@ -67,5 +67,5 @@ in urban morphology at the plot scale. Computers, Environment and Urban Systems,
 80, 101441.
 }
 \seealso{
-st_merge_spatialunits()
+st_merge_spatialunits, \code{\link[moter:motess]{moter::motess()}}
 }

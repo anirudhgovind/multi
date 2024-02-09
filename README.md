@@ -11,7 +11,9 @@
 
 multi (Morphometric UtiLiTIes) provides utility functions that make
 basic steps — cleaning street networks, creating spatial units, etc. —
-in urban morphometric analyses easier.
+in urban morphometric analyses easier. multi is meant to work with other
+packages in the R ecosystem and, as such, does not duplicate already
+implemented functionality.
 
 ## Installation
 
