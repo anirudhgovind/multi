@@ -46,6 +46,10 @@ st_create_tessellations <-
            contiguity = "rook",
            verbose = T) {
 
+    # Turn off s2 geometry
+
+    sf::sf_use_s2(FALSE)
+
     if (type == "morphological") {
       # Init vars used further down
 

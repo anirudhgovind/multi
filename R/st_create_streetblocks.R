@@ -30,6 +30,11 @@ st_create_streetblocks <- function(x,
                                    merge_type = "min_centroid_distance",
                                    contiguity = "rook",
                                    verbose = T) {
+
+  # Turn off s2 geometry
+
+  sf::sf_use_s2(FALSE)
+
   # Check linestrings and polygons
 
   x <- process_linestrings(x)

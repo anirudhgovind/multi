@@ -2,7 +2,7 @@
 #'
 #' @param x an `sf` object with `POLYGON` geometries representing the
 #' spatial units to be surveyed.
-#' @param trim numeric; fraction (0 to 0.5) of values to be trimmed from each
+#' @param trim numeric; fraction (0 to 0.5) of values to be trimmed from the lower
 #' end to compute a trimmed mean
 #'
 #' @return A `data.frame` object with numeric values of min, max, mean, and
@@ -61,8 +61,11 @@ st_survey_spatialunits <- function(x,
     if (!is.numeric(trim)) {
       stop("Trim should contain a numeric value.")
     } else {
-      x_trim <- mean(x$areas,
-                     trim = trim)
+      x_trim <- x |>
+        sf::st_set_geometry(NULL) |>
+        dplyr::arrange(areas) |>
+        dplyr::slice_tail(prop = 1 - trim) |>
+        dplyr::summarise(value = mean(areas))
 
       suffix <- data.frame(category = c("Area"),
                            description = c(paste0("Trimmed Mean (",
