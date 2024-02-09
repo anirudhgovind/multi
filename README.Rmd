@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 > **Warning**
 > This package is under active development. The API may change.
 
-multi (Morphometric UtiLiTIes) provides utility functions that make basic steps &mdash; cleaning street networks, creating spatial units, etc. &mdash; in urban morphometric analyses easier.
+multi (Morphometric UtiLiTIes) provides utility functions that make basic steps &mdash; cleaning street networks, creating spatial units, etc. &mdash; in urban morphometric analyses easier. multi is meant to work with other packages in the R ecosystem and, as such, does not duplicate already implemented functionality.
 
 ## Installation
 

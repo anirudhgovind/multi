@@ -1,0 +1,165 @@
+---
+title: "1. Spatial Units"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, message=FALSE, warning=FALSE}
+library(multi)
+library(osmdata)
+library(sf)
+library(tmap)
+```
+
+```{r, echo=FALSE}
+tmap::tmap_options(check.and.fix = TRUE,
+                   show.warnings = FALSE)
+```
+
+`multi` simplifies the process of creating morphological spatial units like street blocks and morphological tessellation units (MTs; Fleischmann et al., 2020). This vignette presents one workflow for creating street blocks and MTs using data from OpenStreetMap (using the excellent `osmdata` package; Padgham et al., 2022) with Bangalore, India as a case. 
+
+## Street Blocks
+
+The creation of streetblocks requires two input datasets:
+- a polygon representing the extents of the study area,
+- linestrings representing highways/ streets in the study area.
+
+Typically, the study area extents are pre-defined and known to us (such as the administrative or municipal boundary within a particular city or region). For this vignette, we'll define a location in the center of Bangalore and then draw a 500m buffer around it.
+
+```{r}
+# Define the study area extents.
+
+bangalore_boundary <- data.frame(lat = c(12.964045),
+                         long = c(77.585611)) |> 
+  sf::st_as_sf(coords = c("long", "lat"),
+               crs = 4326) |> 
+  sf::st_transform(3857) |> 
+  sf::st_buffer(500,
+                endCapStyle = "SQUARE") |> 
+  sf::st_transform(4326) |> 
+  sf::st_make_valid()
+
+bangalore_boundary
+```
+
+We can then use this buffer as the bounding box to download highways/ streets from OpenStreetMap.
+
+```{r, eval=FALSE}
+# Download highways from OpenStreetMap
+
+bangalore_highways <- osmdata::opq(bbox = sf::st_bbox(bangalore_boundary)) |> 
+  osmdata::add_osm_feature("highway") |> 
+  osmdata::osmdata_sf() |> 
+  purrr::pluck("osm_lines")  |> 
+  dplyr::select(osm_id, highway, geometry)  |> 
+  sf::st_make_valid()
+
+bangalore_highways
+```
+
+Note: Both datasets are included in `multi` and can be accessed using the `data()` function.
+
+```{r}
+# Load data as included in the package.
+
+data("bangalore_buildings") # Load for the map.
+data("bangalore_highways")
+
+```
+
+The code chunk below uses these datasets to draw street blocks. Aside from setting `merge_threshold = NULL`, we use function defaults.
+
+```{r}
+# Draw street blocks.
+
+bangalore_streetblocks <- multi::st_create_streetblocks(x = bangalore_highways,
+                                                        boundary = bangalore_boundary,
+                                                        merge_threshold = NULL,
+                                                        verbose = TRUE)
+
+bangalore_streetblocks
+
+tmap::tm_shape(bangalore_buildings) +
+  tmap::tm_fill(col = "#d9d9d9") +
+  tmap::tm_shape(bangalore_streetblocks) +
+  tmap::tm_borders() +
+  tmap::tm_layout(frame = FALSE)
+```
+
+Notice that the function warns us about the presence of small geometries (< m^2). Such small geometries are often created when the input data contains multiple linestrings in close proximity. Awkward street intersections and small traffic islands also result in these small geometries. To address this, we can either define a non-null `merge_threshold` value (in m^2) while creating the street blocks or use the st_merge_spatialunits function subsequently. We can also use the `st_survey_spatialunits()` function to get an overview of the current sizes.
+
+```{r}
+multi::st_survey_spatialunits(bangalore_streetblocks,
+                              trim = 0.3)
+```
+
+The `st_merge_spatialunits()` function uses an iterative merging process. Please refer to the [Iterative Merging Vignette](2-Iterative-merging.Rmd) for more details. Below, we use 4050 m^2 as the merge threshold and `max_shared_boundary` as the merge type.
+
+```{r}
+# Merge spatial units.
+
+bangalore_streetblocks_merged <- multi::st_merge_spatialunits(x = bangalore_streetblocks,
+                                                              merge_threshold = 4050,
+                                                              merge_type = "max_shared_boundary")
+
+bangalore_streetblocks_merged
+
+tmap::tm_shape(bangalore_buildings) +
+  tmap::tm_fill(col = "#d9d9d9") +
+  tmap::tm_shape(bangalore_streetblocks_merged) +
+  tmap::tm_borders() +
+  tmap::tm_layout(frame = FALSE)
+```
+
+The merging process results in `r nrow(bangalore_streetblocks_merged)` streetblocks against an initial value of `r nrow(bangalore_streetblocks)`.
+
+## Morphological Tessellation Units
+
+The process of creating morphological tessellation units (MTs) is very similar to the process of drawing streetblocks. The only major difference is that we require data on building polygons rather than highway/ street linestrings.
+
+This data can also be obtained from OpenStreetMap.
+
+```{r, eval=FALSE}
+# Download buildings from OpenStreetMap.
+
+bangalore_buildings <- osmdata::opq(bbox = sf::st_bbox(bangalore_boundary)) |> 
+  osmdata::add_osm_feature("building") |> 
+  osmdata::osmdata_sf() |> 
+  purrr::pluck("osm_polygons") |> 
+  dplyr::select(osm_id, geometry) |> 
+  sf::st_make_valid()
+```
+
+As before, this example data is included with the package. The code chunk below uses these datasets to draw MTs. We use default values for `segment_length`, `shrink_extent`, `merge_type`, and `contiguity`. We do however define a merge threshold of 100 m^2. Fair warning, this function (currently) takes longer to execute.
+
+(Please refer to Fleischmann et al., 2020 for details on `segment_length` and `shrink_extent`.) 
+
+```{r}
+# Draw MTUs.
+
+bangalore_mtus <- multi::st_create_tessellations(x = bangalore_buildings,
+                                                 boundary = bangalore_boundary,
+                                                 merge_threshold = 100,
+                                                 verbose = FALSE)
+
+bangalore_mtus
+
+tmap::tm_shape(bangalore_buildings) +
+  tmap::tm_fill(col = "#d9d9d9") +
+  tmap::tm_shape(bangalore_mtus) +
+  tmap::tm_borders() +
+  tmap::tm_layout(frame = FALSE)
+```
+
+A similar but alternative implementation of a function to create MTs is available in the [moter](https://github.com/wcjochem/moter) package.
+
+## References
+
+Fleischmann, M., Feliciotti, A., Romice, O., & Porta, S. (2020). Morphological tessellation as a way of partitioning space: Improving consistency in urban morphology at the plot scale. Computers, Environment and Urban Systems, 80, 101441.
+
+Padgham, M., Rudis, B., Lovelace, R., Salmon, M., Smith, A., Smith, J., Gilardi, A., Spinielli, E., North, A., Machyna, M., & code), M. K. (Author of included R. (2022). osmdata: Import “OpenStreetMap” Data as Simple Features or Spatial Objects (0.1.10) [Computer software]. https://CRAN.R-project.org/package=osmdata
