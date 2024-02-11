@@ -85,9 +85,9 @@
 <p><code>multi</code> simplifies the process of creating morphological
 spatial units like street blocks and morphological tessellation units
 (MTs; Fleischmann et al., 2020). This vignette presents one workflow for
-creating street blocks and MTs using data from OpenStreetMap (using the
-excellent <code>osmdata</code> package; Padgham et al., 2022) with
-Bangalore, India as a case.</p>
+creating street blocks and MTs using data from OpenStreetMap (sourced
+using the excellent <code>osmdata</code> package; Padgham et al., 2022)
+with Bangalore, India as a case.</p>
 <div class="section level2">
 <h2 id="street-blocks">Street Blocks<a class="anchor" aria-label="anchor" href="#street-blocks"></a>
 </h2>
@@ -191,18 +191,19 @@ also use the <code><a href="../reference/st_survey_spatialunits.html">st_survey_
 overview of the current sizes.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">multi</span><span class="fu">::</span><span class="fu"><a href="../reference/st_survey_spatialunits.html">st_survey_spatialunits</a></span><span class="op">(</span><span class="va">bangalore_streetblocks</span>,</span>
-<span>                              trim <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   category description        value             </span></span>
+<span>                              trim <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></span></code></pre></div>
+<p><img src="1-Spatial-Units_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
+<pre><code><span><span class="co">#&gt;   category description        value             </span></span>
 <span><span class="co">#&gt; 1 Area     Min                8.259066e-01 [m^2]</span></span>
 <span><span class="co">#&gt; 2 Area     Max                8.031008e+04 [m^2]</span></span>
 <span><span class="co">#&gt; 3 Area     Mean               3.006233e+03 [m^2]</span></span>
 <span><span class="co">#&gt; 4 Area     Median             3.006233e+03 [m^2]</span></span>
-<span><span class="co">#&gt; 5 Area     Trimmed Mean (0.3) 4.225273e+03 [m^2]</span></span></code></pre></div>
+<span><span class="co">#&gt; 5 Area     Trimmed Mean (0.3) 4.225273e+03 [m^2]</span></span></code></pre>
 <p>The <code><a href="../reference/st_merge_spatialunits.html">st_merge_spatialunits()</a></code> function uses an iterative
 merging process. Please refer to the <a href="2-Iterative-merging.Rmd">Iterative Merging Vignette</a> for more
 details. Below, we use 4050 m^2 as the merge threshold and
 <code>max_shared_boundary</code> as the merge type.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Merge spatial units.</span></span>
 <span></span>
 <span><span class="va">bangalore_streetblocks_merged</span> <span class="op">&lt;-</span> <span class="fu">multi</span><span class="fu">::</span><span class="fu"><a href="../reference/st_merge_spatialunits.html">st_merge_spatialunits</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">bangalore_streetblocks</span>,</span>
@@ -777,7 +778,7 @@ very similar to the process of drawing streetblocks. The only major
 difference is that we require data on building polygons rather than
 highway/ street linestrings.</p>
 <p>This data can also be obtained from OpenStreetMap.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Download buildings from OpenStreetMap.</span></span>
 <span></span>
 <span><span class="va">bangalore_buildings</span> <span class="op">&lt;-</span> <span class="fu">osmdata</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/osmdata/reference/opq.html" class="external-link">opq</a></span><span class="op">(</span>bbox <span class="op">=</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_bbox.html" class="external-link">st_bbox</a></span><span class="op">(</span><span class="va">bangalore_boundary</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -794,7 +795,7 @@ define a merge threshold of 100 m^2. Fair warning, this function
 (currently) takes longer to execute.</p>
 <p>(Please refer to Fleischmann et al., 2020 for details on
 <code>segment_length</code> and <code>shrink_extent</code>.)</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Draw MTUs.</span></span>
 <span></span>
 <span><span class="va">bangalore_mtus</span> <span class="op">&lt;-</span> <span class="fu">multi</span><span class="fu">::</span><span class="fu"><a href="../reference/st_create_tessellations.html">st_create_tessellations</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">bangalore_buildings</span>,</span>
@@ -825,20 +826,20 @@ define a merge threshold of 100 m^2. Fair warning, this function
 <span><span class="co">#&gt; Simple feature collection with 1108 features and 1 field</span></span>
 <span><span class="co">#&gt; Geometry type: POLYGON</span></span>
 <span><span class="co">#&gt; Dimension:     XY</span></span>
-<span><span class="co">#&gt; Bounding box:  xmin: 77.58112 ymin: 12.95967 xmax: 77.5901 ymax: 12.96842</span></span>
-<span><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
+<span><span class="co">#&gt; Bounding box:  xmin: 8636291 ymin: 1455125 xmax: 8637291 ymax: 1456125</span></span>
+<span><span class="co">#&gt; Projected CRS: WGS 84 / Pseudo-Mercator</span></span>
 <span><span class="co">#&gt; First 10 features:</span></span>
 <span><span class="co">#&gt;                          geometry areas</span></span>
-<span><span class="co">#&gt; 1  POLYGON ((77.58155 12.96154...   241</span></span>
-<span><span class="co">#&gt; 2  POLYGON ((77.58121 12.96072...   393</span></span>
-<span><span class="co">#&gt; 3  POLYGON ((77.58516 12.96628...   309</span></span>
-<span><span class="co">#&gt; 4  POLYGON ((77.58221 12.96521...   431</span></span>
-<span><span class="co">#&gt; 5  POLYGON ((77.58122 12.96834...   332</span></span>
-<span><span class="co">#&gt; 6  POLYGON ((77.58233 12.96832...   411</span></span>
-<span><span class="co">#&gt; 7  POLYGON ((77.58179 12.96687...   313</span></span>
-<span><span class="co">#&gt; 8  POLYGON ((77.5826 12.96468,...   269</span></span>
-<span><span class="co">#&gt; 9  POLYGON ((77.58144 12.96664...   341</span></span>
-<span><span class="co">#&gt; 10 POLYGON ((77.58203 12.96451...   360</span></span>
+<span><span class="co">#&gt; 1  POLYGON ((8636339 1455338, ...   241</span></span>
+<span><span class="co">#&gt; 2  POLYGON ((8636301 1455245, ...   393</span></span>
+<span><span class="co">#&gt; 3  POLYGON ((8636740 1455880, ...   309</span></span>
+<span><span class="co">#&gt; 4  POLYGON ((8636412 1455758, ...   431</span></span>
+<span><span class="co">#&gt; 5  POLYGON ((8636301 1456116, ...   332</span></span>
+<span><span class="co">#&gt; 6  POLYGON ((8636426 1456113, ...   411</span></span>
+<span><span class="co">#&gt; 7  POLYGON ((8636365 1455948, ...   313</span></span>
+<span><span class="co">#&gt; 8  POLYGON ((8636456 1455698, ...   269</span></span>
+<span><span class="co">#&gt; 9  POLYGON ((8636326 1455921, ...   341</span></span>
+<span><span class="co">#&gt; 10 POLYGON ((8636392 1455678, ...   360</span></span>
 <span></span>
 <span><span class="fu">tmap</span><span class="fu">::</span><span class="fu"><a href="https://r-tmap.github.io/tmap/reference/tm_shape.html" class="external-link">tm_shape</a></span><span class="op">(</span><span class="va">bangalore_buildings</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">tmap</span><span class="fu">::</span><span class="fu"><a href="https://r-tmap.github.io/tmap/reference/tm_polygons.html" class="external-link">tm_fill</a></span><span class="op">(</span>col <span class="op">=</span> <span class="st">"#d9d9d9"</span><span class="op">)</span> <span class="op">+</span></span>
