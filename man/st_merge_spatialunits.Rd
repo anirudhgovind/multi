@@ -22,7 +22,7 @@ iteratively merged until this value is reached. To skip this process,
 set \code{merge_threshold = NULL}.}
 
 \item{merge_type}{string; criteria with which polygons are merged. Must be one of
-"min_centroid_distance", "min_shared_boundary", or "max_shared_boundary".
+"min_centroid_distance", "min_adjacent_area", "max_adjacent_area", "min_shared_boundary", or "max_shared_boundary".
 Default = "min_centroid_distance".}
 
 \item{contiguity}{string; one of "queen" or "rook". Default = "rook".}

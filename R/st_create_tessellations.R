@@ -11,7 +11,7 @@
 #' size for a spatial unit. Contiguous units will be iteratively merged until
 #' this value is reached. To skip this process, set `merge_threshold = NULL`.
 #' See st_merge_spatialunits() for more details.
-#' @param merge_type string; Passed on to st_merge_spatialunits.
+#' @param merge_type string; Passed on to st_merge_spatialunits().
 #' Criteria with which polygons are merged. Must be one of
 #' "min_centroid_distance", "min_shared_boundary", or "max_shared_boundary".
 #' Default = "min_centroid_distance".
@@ -38,7 +38,7 @@
 st_create_tessellations <-
   function(x,
            boundary,
-           type = c("morphological"),
+           type = "morphological",
            segment_length = 0.5,
            shrink_extent = 0.4,
            merge_threshold = NULL,
@@ -164,10 +164,14 @@ st_create_tessellations <-
         )
       }
 
-      # Convert CRS back to original
+      # If geometry is long lat, convert CRS back to the original.
 
-      tessellations <- sf::st_transform(tessellations,
-                                        x_crs)
+      if (sf::st_is_longlat(x) == TRUE |
+          sf::st_is_longlat(boundary) == TRUE) {
+
+        tessellations <- sf::st_transform(tessellations,
+                                          x_crs)
+      }
 
       return(tessellations)
     } else {

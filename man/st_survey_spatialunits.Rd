@@ -4,14 +4,16 @@
 \alias{st_survey_spatialunits}
 \title{Survey a set of spatial units to get summary statistics.}
 \usage{
-st_survey_spatialunits(x, trim = NULL)
+st_survey_spatialunits(x, trim = NULL, viz = TRUE)
 }
 \arguments{
 \item{x}{an \code{sf} object with \code{POLYGON} geometries representing the
 spatial units to be surveyed.}
 
 \item{trim}{numeric; fraction (0 to 0.5) of values to be trimmed from the lower
-end to compute a trimmed mean}
+end to compute a trimmed mean.}
+
+\item{viz}{binary; Displays a scatterplot of area distributions.}
 }
 \value{
 A \code{data.frame} object with numeric values of min, max, mean, and
