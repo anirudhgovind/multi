@@ -7,7 +7,7 @@
 #' iteratively merged until this value is reached. To skip this process,
 #' set `merge_threshold = NULL`.
 #' @param merge_type string; criteria with which polygons are merged. Must be one of
-#' "min_centroid_distance", "min_shared_boundary", or "max_shared_boundary".
+#' "min_centroid_distance", "min_adjacent_area", "max_adjacent_area", "min_shared_boundary", or "max_shared_boundary".
 #' Default = "min_centroid_distance".
 #' @param contiguity string; one of "queen" or "rook". Default = "rook".
 #' @param verbose logical; if `FALSE` no status messages will be output.
@@ -43,11 +43,15 @@ st_merge_spatialunits <- function(x,
 
   # Check type is one of defined defaults
 
-  if (!merge_type %in% c("min_centroid_distance",
-                         "min_shared_boundary",
-                         "max_shared_boundary")) {
+  if (!merge_type %in% c(
+    "min_centroid_distance",
+    "min_adjacent_area",
+    "max_adjacent_area",
+    "min_shared_boundary",
+    "max_shared_boundary"
+  )) {
     stop(
-      "merge_type must be one of 'min_centroid_distance', 'min_shared_boundary', or 'max_shared_boundary'."
+      "merge_type must be one of 'min_centroid_distance', 'min_adjacent_area', 'max_adjacent_area', 'min_shared_boundary', or 'max_shared_boundary'."
     )
   }
 
@@ -112,6 +116,13 @@ st_merge_spatialunits <- function(x,
         if (merge_type == "min_centroid_distance") {
           selected_unit <- min_centroid_distance(ref_unit = ref_unit,
                                                  ref_unit_neighbours_geo = ref_unit_neighbours_geo)
+        } else if (merge_type == "min_adjacent_area" |
+                   merge_type == "max_adjacent_area") {
+          selected_unit <- area_adjacency(
+            ref_unit = ref_unit,
+            ref_unit_neighbours_geo = ref_unit_neighbours_geo,
+            merge_type = merge_type
+          )
         } else if (merge_type == "min_shared_boundary" |
                    merge_type == "max_shared_boundary") {
           selected_unit <- shared_boundary_length(
@@ -164,6 +175,36 @@ st_merge_spatialunits <- function(x,
   }
 
   return(x)
+}
+
+# Function to merge polygon with an adjacent polygon with the smallest/ largest area
+
+area_adjacency <- function(ref_unit,
+                           ref_unit_neighbours_geo,
+                           merge_type = merge_type) {
+  # Init Var
+
+  areas <- NULL
+
+  # Find areas of the polygons
+  areas <- sf::st_area(ref_unit_neighbours_geo)
+
+  # If min area
+  if (merge_type == "min_adjacent_area") {
+    smallest_area <-
+      as.integer(ref_unit_neighbours_geo$index[which.min(areas)])
+
+    return(smallest_area)
+  }
+
+  # If max area
+  if (merge_type == "max_adjacent_area") {
+    largest_area <-
+      as.integer(ref_unit_neighbours_geo$index[which.max(areas)])
+
+    return(largest_area)
+  }
+
 }
 
 # Function to select polygon based on minimum centroid distance

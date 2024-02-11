@@ -21,7 +21,7 @@ tmap::tmap_options(check.and.fix = TRUE,
                    show.warnings = FALSE)
 ```
 
-`multi` simplifies the process of creating morphological spatial units like street blocks and morphological tessellation units (MTs; Fleischmann et al., 2020). This vignette presents one workflow for creating street blocks and MTs using data from OpenStreetMap (using the excellent `osmdata` package; Padgham et al., 2022) with Bangalore, India as a case. 
+`multi` simplifies the process of creating morphological spatial units like street blocks and morphological tessellation units (MTs; Fleischmann et al., 2020). This vignette presents one workflow for creating street blocks and MTs using data from OpenStreetMap (sourced using the excellent `osmdata` package; Padgham et al., 2022) with Bangalore, India as a case. 
 
 ## Street Blocks
 
