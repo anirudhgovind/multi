@@ -115,7 +115,6 @@ spatial units.</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">street_blocks</span> <span class="op">&lt;-</span> <span class="fu">st_create_streetblocks</span><span class="op">(</span>x <span class="op">=</span> <span class="va">bangalore_highways</span>,</span></span>
 <span class="r-in"><span>boundary <span class="op">=</span> <span class="va">bangalore_boundary</span>, merge_threshold <span class="op">=</span> <span class="fl">1</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Spherical geometry (s2) switched off</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The `sf` geometry column was renamed before merging.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Linking to GEOS 3.10.2, GDAL 3.4.1, PROJ 8.2.1; sf_use_s2() is FALSE</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">street_blocks</span><span class="op">)</span></span></span>
