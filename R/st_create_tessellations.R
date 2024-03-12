@@ -46,14 +46,16 @@ st_create_tessellations <-
            contiguity = "rook",
            verbose = T) {
 
+
+    # Init vars used further down
+
+    temp_id <- geometry <- NULL
+
     # Turn off s2 geometry
 
     sf::sf_use_s2(FALSE)
 
     if (type == "morphological") {
-      # Init vars used further down
-
-      temp_id <- geometry <- NULL
 
       # Check data types.
 
@@ -87,49 +89,10 @@ st_create_tessellations <-
       x <- sf::st_buffer(x,
                          dist = (-1 * shrink_extent))
 
-      # Slice into segments
+      # Segment these lines and tessellate them
 
-      segments <- sf::st_segmentize(x, segment_length)
-
-      # Extract points from the segments
-
-      suppressMessages(suppressWarnings(points <-
-                                          sf::st_cast(segments,
-                                                      "POINT")))
-
-      # Remove duplicates
-
-      points_unique <- unique(points)
-
-      # Draw Voronoi Polygons
-
-      voronoi_polygons <-
-        sf::st_collection_extract(sf::st_voronoi(sf::st_union(points_unique)))
-
-      # Dissolve polygons
-
-      voronoi_polygons <-
-        voronoi_polygons[unlist(sf::st_intersects(points_unique,
-                                                  voronoi_polygons))]
-
-      # Join points to the polygons
-
-      voronoi_polygons <- sf::st_join(sf::st_sf(voronoi_polygons),
-                                      points_unique)
-
-      # Make geometry valid
-
-      voronoi_polygons <- sf::st_make_valid(voronoi_polygons)
-
-      voronoi_polygons <- sf::st_buffer(voronoi_polygons,
-                                        0)
-
-      # Merge polygons
-
-      suppressMessages(suppressWarnings(voronoi_polygons <- voronoi_polygons |>
-        dplyr::group_by(temp_id) |>
-        dplyr::summarise(geometry = sf::st_union(geometry)) |>
-        dplyr::ungroup()))
+      voronoi_polygons <- segment_and_tessellate(x = x,
+                                                 segment_length = segment_length)
 
       # Clip to boundary
 
@@ -180,3 +143,68 @@ st_create_tessellations <-
     }
 
   }
+
+#' Segment `LINESTRING` or `POLYGON` geometries and create Voronoi tessellations.
+#'
+#' @param x a `sf` object with `LINESTRING` or `POLYGON` geometries.
+#'
+#' @return A `sf` object with Voronoi tessellations
+#' @keywords internal
+#' @noRd
+segment_and_tessellate <- function(x, segment_length) {
+
+  # Init vars used further down
+
+  temp_id <- geometry <- NULL
+
+  # Slice into segments
+
+  segments <- sf::st_segmentize(x, segment_length)
+
+  # Extract points from the segments
+
+  suppressMessages(suppressWarnings(points <-
+                                      sf::st_cast(segments,
+                                                  "POINT")))
+
+  # Remove duplicates
+
+  points_unique <- unique(points)
+
+  # Draw Voronoi Polygons
+
+  voronoi_polygons <-
+    sf::st_collection_extract(sf::st_voronoi(sf::st_union(points_unique)))
+
+  # Dissolve polygons
+
+  voronoi_polygons <-
+    voronoi_polygons[unlist(sf::st_intersects(points_unique,
+                                              voronoi_polygons))]
+
+  # Join points to the polygons
+
+  voronoi_polygons <- sf::st_join(sf::st_sf(voronoi_polygons),
+                                  points_unique)
+
+  # Make geometry valid
+
+  voronoi_polygons <- sf::st_make_valid(voronoi_polygons)
+
+  voronoi_polygons <- sf::st_buffer(voronoi_polygons,
+                                    0)
+
+  # Merge polygons
+
+  suppressMessages(
+    suppressWarnings(
+      voronoi_polygons <- voronoi_polygons |>
+        dplyr::group_by(temp_id) |>
+        dplyr::summarise(geometry = sf::st_union(geometry)) |>
+        dplyr::ungroup()
+    )
+  )
+
+  return(voronoi_polygons)
+
+}
