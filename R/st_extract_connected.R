@@ -1,8 +1,8 @@
 #' Extract connected streets from a data frame containing linestrings representing street networks.
 #'
-#' @param x an `sf` object with `LINESTRING` geometries.
+#' @param x a `sf` object with `LINESTRING` geometries.
 #'
-#' @return An `sf` object containing a subset of `x`.
+#' @return A `sf` object containing a subset of `x`.
 #' @export
 #'
 #' @examples
@@ -31,9 +31,9 @@ st_extract_connected <- function(x) {
 
 #' Extract disconnected streets from a data frame containing linestrings representing street networks.
 #'
-#' @param x an `sf` object with `LINESTRING` geometries.
+#' @param x a `sf` object with `LINESTRING` geometries.
 #'
-#' @return An `sf` object containing a subset of `x`.
+#' @return A `sf` object containing a subset of `x`.
 #' @export
 #'
 #' @examples

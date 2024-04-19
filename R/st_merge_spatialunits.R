@@ -1,6 +1,6 @@
 #' Iteratively merge spatial units to ensure all of them meet a minimum area threshold.
 #'
-#' @param x an `sf` object with `POLYGON` geometries representing the
+#' @param x a `sf` object with `POLYGON` geometries representing the
 #' spatial units to be merged.
 #' @param merge_threshold numeric; value in square meters represents the
 #' smallest acceptable area for a spatial unit. Contiguous units will be

@@ -7,13 +7,13 @@
 st_extract_intersections(x, threshold = 2)
 }
 \arguments{
-\item{x}{an \code{sf} object with \code{LINESTRING} geometries representing street networks.}
+\item{x}{a \code{sf} object with \code{LINESTRING} geometries representing street networks.}
 
 \item{threshold}{integer; the minimum number of intersecting roads needed to
 count as an intersection. Default = 2.}
 }
 \value{
-An \code{sf} object with \code{POINT} geometries representing street intersections.
+A \code{sf} object with \code{POINT} geometries representing street intersections.
 }
 \description{
 Extract street intersections.

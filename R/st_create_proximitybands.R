@@ -1,6 +1,6 @@
 #' Create proximity band spatial units.
 #'
-#' @param x an `sf` object with `LINESTRING` geometries representing a street
+#' @param x a `sf` object with `LINESTRING` geometries representing a street
 #' network.
 #' @param band_width numeric; width of the band as measured from the centerline
 #' of the `LINESTRING` representing the street.
@@ -18,7 +18,7 @@
 #' @param contiguity string; one of "queen" or "rook". Default = "rook".
 #' @param verbose logical; if `FALSE` no status messages will be output.
 #'
-#' @return An `sf` object with `POLYGON` geometries representing tessellated
+#' @return A `sf` object with `POLYGON` geometries representing tessellated
 #' spatial units.
 #' @seealso st_merge_spatialunits, [moter::motess()]
 #' @references Araldi, A., & Fusco, G. (2019). From the street to the

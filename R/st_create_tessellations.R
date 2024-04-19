@@ -1,6 +1,6 @@
 #' Create tessellated spatial units.
 #'
-#' @param x an `sf` object with `POLYGON` geometries representing buildings.
+#' @param x a `sf` object with `POLYGON` geometries representing buildings.
 #' @param boundary an `sf` object with `POLYGON` geometries representing the
 #' extents of the study area.
 #' @param segment_length numeric; Length of segments building polygons are
@@ -22,7 +22,7 @@
 #' @param contiguity string; one of "queen" or "rook". Default = "rook".
 #' @param verbose logical; if `FALSE` no status messages will be output.
 #'
-#' @return An `sf` object with `POLYGON` geometries representing tessellated
+#' @return A `sf` object with `POLYGON` geometries representing tessellated
 #' spatial units.
 #' @export
 #' @seealso st_merge_spatialunits, [moter::motess()]
@@ -148,7 +148,7 @@ st_create_tessellations <-
 #'
 #' @param x a `sf` object with `LINESTRING` or `POLYGON` geometries.
 #'
-#' @return A `sf` object with Voronoi tessellations
+#' @return A `sf` object with Voronoi tessellations.
 #' @keywords internal
 #' @noRd
 segment_and_tessellate <- function(x, segment_length) {

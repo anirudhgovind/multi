@@ -7,7 +7,7 @@
 st_survey_spatialunits(x, trim = NULL, viz = TRUE)
 }
 \arguments{
-\item{x}{an \code{sf} object with \code{POLYGON} geometries representing the
+\item{x}{a \code{sf} object with \code{POLYGON} geometries representing the
 spatial units to be surveyed.}
 
 \item{trim}{numeric; fraction (0 to 0.5) of values to be trimmed from the lower

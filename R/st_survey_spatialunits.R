@@ -1,6 +1,6 @@
 #' Survey a set of spatial units to get summary statistics.
 #'
-#' @param x an `sf` object with `POLYGON` geometries representing the
+#' @param x a `sf` object with `POLYGON` geometries representing the
 #' spatial units to be surveyed.
 #' @param trim numeric; fraction (0 to 0.5) of values to be trimmed from the lower
 #' end to compute a trimmed mean.

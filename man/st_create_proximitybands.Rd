@@ -15,7 +15,7 @@ st_create_proximitybands(
 )
 }
 \arguments{
-\item{x}{an \code{sf} object with \code{LINESTRING} geometries representing a street
+\item{x}{a \code{sf} object with \code{LINESTRING} geometries representing a street
 network.}
 
 \item{band_width}{numeric; width of the band as measured from the centerline
@@ -40,7 +40,7 @@ See st_merge_spatialunits() for more details.}
 \item{verbose}{logical; if \code{FALSE} no status messages will be output.}
 }
 \value{
-An \code{sf} object with \code{POLYGON} geometries representing tessellated
+A \code{sf} object with \code{POLYGON} geometries representing tessellated
 spatial units.
 }
 \description{

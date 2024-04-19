@@ -1,6 +1,6 @@
 #' Create street block spatial units.
 #'
-#' @param x an `sf` object with `LINESTRING` geometries representing a street
+#' @param x a `sf` object with `LINESTRING` geometries representing a street
 #' network.
 #' @param boundary an `sf` object with `POLYGON` geometries representing the
 #' extents of the study area.
@@ -16,7 +16,7 @@
 #' @param contiguity string; one of "queen" or "rook". Default = "rook".
 #' @param verbose logical; if `FALSE` no status messages will be output.
 #'
-#' @return An `sf` object with `POLYGON` geometries representing street block
+#' @return A `sf` object with `POLYGON` geometries representing street block
 #' spatial units.
 #' @export
 #' @seealso st_merge_spatialunits()

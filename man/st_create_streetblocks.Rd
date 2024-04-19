@@ -14,7 +14,7 @@ st_create_streetblocks(
 )
 }
 \arguments{
-\item{x}{an \code{sf} object with \code{LINESTRING} geometries representing a street
+\item{x}{a \code{sf} object with \code{LINESTRING} geometries representing a street
 network.}
 
 \item{boundary}{an \code{sf} object with \code{POLYGON} geometries representing the
@@ -36,7 +36,7 @@ See st_merge_spatialunits() for more details.}
 \item{verbose}{logical; if \code{FALSE} no status messages will be output.}
 }
 \value{
-An \code{sf} object with \code{POLYGON} geometries representing street block
+A \code{sf} object with \code{POLYGON} geometries representing street block
 spatial units.
 }
 \description{

@@ -1,10 +1,10 @@
 #' Extract street intersections.
 #'
-#' @param x an `sf` object with `LINESTRING` geometries representing street networks.
+#' @param x a `sf` object with `LINESTRING` geometries representing street networks.
 #' @param threshold integer; the minimum number of intersecting roads needed to
 #' count as an intersection. Default = 2.
 #'
-#' @return An `sf` object with `POINT` geometries representing street intersections.
+#' @return A `sf` object with `POINT` geometries representing street intersections.
 #' @export
 #'
 #' @examples
