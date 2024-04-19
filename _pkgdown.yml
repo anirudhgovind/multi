@@ -22,6 +22,7 @@ reference:
   contents:
   - add_unique_id
   - st_merge_spatialunits
+  - st_orientation
   - st_survey_spatialunits
 
 - subtitle: Datasets

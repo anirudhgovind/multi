@@ -83,6 +83,47 @@ euclideanDistance <- function (pointA, pointB) {
   sqrt(((pointA[, 1] - pointB[, 1]) ^ 2) + ((pointA[, 2] - pointB[, 2]) ^ 2))
 }
 
+#' Calculate the angle between a line and the horizontal given two
+#' coordinate locations.
+#'
+#' @param x1 the x-coordinate of the first point.
+#' @param y1 the y-coordinate of the first point.
+#' @param x2 the x-coordinate of the second point.
+#' @param y2 the y-coordinate of the second point.
+#'
+#' @return The angle between the line and the horizontal.
+#' @keywords internal
+#' @noRd
+calc_angle <- function(x1,
+                       y1,
+                       x2,
+                       y2) {
+
+  # Get the height
+
+  height <- abs(y2 - y1)
+
+  # Get the base
+
+  base <- abs(x2 - x1)
+
+  # Get the angle
+
+  angle <- round(rad_to_deg(atan(height/base)),
+                 3)
+}
+
+#' Convert an angle in radians to degrees.
+#'
+#' @param radians the angle in radians.
+#'
+#' @return The angle in degrees.
+#' @keywords internal
+#' @noRd
+rad_to_deg <- function(radians) {
+  return(radians * 180 / pi)
+}
+
 #' Add a unique identifier to each observation.
 #'
 #' @param x a `sf` object with geometries.
