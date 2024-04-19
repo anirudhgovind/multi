@@ -4,10 +4,12 @@
 \alias{st_orientation}
 \title{Determine the interior angle between a \code{LINESTRING} and the horizontal.}
 \usage{
-st_orientation(x)
+st_orientation(x, nest = TRUE)
 }
 \arguments{
 \item{x}{a \code{sf} object containing \code{LINESTRING} geometries.}
+
+\item{nest}{logical; If \code{TRUE}, \code{LINESTRING} geometries will be recreated.}
 }
 \value{
 An unnested \code{sf} object containing the orientation of each line

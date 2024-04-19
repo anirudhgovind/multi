@@ -1,13 +1,13 @@
 #' Determine the interior angle between a `LINESTRING` and the horizontal.
 #'
 #' @param x a `sf` object containing `LINESTRING` geometries.
+#' @param nest logical; If `TRUE`, `LINESTRING` geometries will be recreated.
 #'
 #' @return An unnested `sf` object containing the orientation of each line
 #' segment making up the original `LINESTRING` geometries.
 #' @export
-#'
-#' @examples
-st_orientation <- function(x) {
+st_orientation <- function(x,
+                           nest = TRUE) {
 
   # Housekeeping
 
@@ -43,11 +43,15 @@ st_orientation <- function(x) {
 
   # Nest the columns to form line strings
 
-  x_orientation <- st_nest_coordinates(x_orientation)
+  if (nest == TRUE) {
 
-  # Add the crs back in
+    x_orientation <- st_nest_coordinates(x_orientation)
 
-  sf::st_crs(x_orientation) <- x_crs
+    # Add the crs back in
+
+    sf::st_crs(x_orientation) <- x_crs
+
+  }
 
   return(x_orientation)
 
