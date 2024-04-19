@@ -105,7 +105,8 @@ The `st_merge_spatialunits()` function uses an iterative merging process. Please
 
 bangalore_streetblocks_merged <- multi::st_merge_spatialunits(x = bangalore_streetblocks,
                                                               merge_threshold = 4050,
-                                                              merge_type = "max_shared_boundary")
+                                                              merge_type = "max_shared_boundary",
+                                                              verbose = FALSE)
 
 bangalore_streetblocks_merged
 
@@ -135,7 +136,7 @@ bangalore_buildings <- osmdata::opq(bbox = sf::st_bbox(bangalore_boundary)) |>
   sf::st_make_valid()
 ```
 
-As before, this example data is included with the package. The code chunk below uses these datasets to draw MTs. We use default values for `segment_length`, `shrink_extent`, `merge_type`, and `contiguity`. We do however define a merge threshold of 100 m^2. Fair warning, this function (currently) takes longer to execute.
+As before, this example data is included with the package. The code chunk below uses these datasets to draw MTs. We use default values for `segment_length`, `shrink_extent`, and `contiguity`. We skip the merging process for now.
 
 (Please refer to Fleischmann et al., 2020 for details on `segment_length` and `shrink_extent`.) 
 
@@ -144,7 +145,7 @@ As before, this example data is included with the package. The code chunk below 
 
 bangalore_mtus <- multi::st_create_tessellations(x = bangalore_buildings,
                                                  boundary = bangalore_boundary,
-                                                 merge_threshold = 100,
+                                                 merge_threshold = NULL,
                                                  verbose = FALSE)
 
 bangalore_mtus

@@ -6,7 +6,6 @@
 #' @return A `sf` object containing `LINESTRING` geometries **without** a CRS.
 #' @export
 #'
-#' @examples
 st_nest_coordinates <- function(x) {
 
   # Housekeeping
@@ -60,8 +59,6 @@ st_nest_coordinates <- function(x) {
 #' coordinates for a line.
 #'
 #' @export
-#'
-#' @examples
 st_unnest_coordinates <- function(x) {
 
   # Housekeeping
