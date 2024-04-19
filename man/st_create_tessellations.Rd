@@ -17,7 +17,7 @@ st_create_tessellations(
 )
 }
 \arguments{
-\item{x}{an \code{sf} object with \code{POLYGON} geometries representing buildings.}
+\item{x}{a \code{sf} object with \code{POLYGON} geometries representing buildings.}
 
 \item{boundary}{an \code{sf} object with \code{POLYGON} geometries representing the
 extents of the study area.}
@@ -48,7 +48,7 @@ See st_merge_spatialunits() for more details.}
 \item{verbose}{logical; if \code{FALSE} no status messages will be output.}
 }
 \value{
-An \code{sf} object with \code{POLYGON} geometries representing tessellated
+A \code{sf} object with \code{POLYGON} geometries representing tessellated
 spatial units.
 }
 \description{

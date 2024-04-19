@@ -13,7 +13,7 @@ st_merge_spatialunits(
 )
 }
 \arguments{
-\item{x}{an \code{sf} object with \code{POLYGON} geometries representing the
+\item{x}{a \code{sf} object with \code{POLYGON} geometries representing the
 spatial units to be merged.}
 
 \item{merge_threshold}{numeric; value in square meters represents the

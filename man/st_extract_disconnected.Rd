@@ -7,10 +7,10 @@
 st_extract_disconnected(x)
 }
 \arguments{
-\item{x}{an \code{sf} object with \code{LINESTRING} geometries.}
+\item{x}{a \code{sf} object with \code{LINESTRING} geometries.}
 }
 \value{
-An \code{sf} object containing a subset of \code{x}.
+A \code{sf} object containing a subset of \code{x}.
 }
 \description{
 Extract disconnected streets from a data frame containing linestrings representing street networks.

@@ -9,6 +9,8 @@ reference:
   - st_extract_connected
   - st_extract_disconnected
   - st_extract_intersections
+  - st_nest_coordinates
+  - st_unnest_coordinates
 
 - subtitle: Create Spatial Units
   contents:
