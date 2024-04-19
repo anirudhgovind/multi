@@ -118,8 +118,6 @@ tmap::tm_shape(bangalore_buildings) +
   tmap::tm_layout(frame = FALSE)
 ```
 
-The merging process results in `r nrow(bangalore_streetblocks_merged)` streetblocks against an initial value of `r nrow(bangalore_streetblocks)`.
-
 ## Morphological Tessellation Units
 
 The process of creating morphological tessellation units (MTs) is very similar to the process of drawing streetblocks. The only major difference is that we require data on building polygons rather than highway/ street linestrings.
