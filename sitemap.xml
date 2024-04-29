@@ -61,6 +61,15 @@
     <loc>https://anirudhgovind.github.io/multi/reference/st_merge_spatialunits.html</loc>
   </url>
   <url>
+    <loc>https://anirudhgovind.github.io/multi/reference/st_nest_coordinates.html</loc>
+  </url>
+  <url>
+    <loc>https://anirudhgovind.github.io/multi/reference/st_orientation.html</loc>
+  </url>
+  <url>
     <loc>https://anirudhgovind.github.io/multi/reference/st_survey_spatialunits.html</loc>
+  </url>
+  <url>
+    <loc>https://anirudhgovind.github.io/multi/reference/st_unnest_coordinates.html</loc>
   </url>
 </urlset>

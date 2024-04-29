@@ -1,9 +1,9 @@
 pandoc: 3.1.11
-pkgdown: 2.0.7
+pkgdown: 2.0.9
 pkgdown_sha: ~
 articles:
   1-Spatial-Units: 1-Spatial-Units.html
-last_built: 2024-03-12T05:28Z
+last_built: 2024-04-29T12:50Z
 urls:
   reference: https://anirudhgovind.github.io/multi/reference
   article: https://anirudhgovind.github.io/multi/articles
